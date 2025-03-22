@@ -59,16 +59,24 @@ if [[ ! -d "$DOTFILES" ]]; then
     echo "Cloning .dotfiles..."
     git clone --depth=1 https://github.com/DeLimaM/.dotfiles
 fi
-
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=/"
-
 dotfiles config --local status.showUntrackedFiles no
 
 # ll & cd
 alias ll="ls -alF"
-
 function cl() {
     builtin cd "$@" && ll
 }
-
 alias cd="cl"
+
+# KDE Plasma Sync Alias
+alias sync-kde="dotfiles add ~/.config/plasma-org.kde.plasma.desktop-appletsrc \
+    ~/.config/plasmashellrc \
+    ~/.config/kdeglobals \
+    ~/.config/kwinrc \
+    ~/.config/khotkeysrc \
+    ~/.config/kglobalshortcutsrc \
+    ~/.config/dolphinrc \
+    ~/.config/krunnerrc \
+    ~/.config/kscreenlockerrc && \
+    dotfiles commit -m 'Auto-sync KDE Plasma settings'"
