@@ -79,7 +79,7 @@ DialogWidth=720
 
 [Containments][112][Applets][140][Configuration][General]
 groupPopups=false
-launchers=applications:systemsettings.desktop,preferred://filemanager,preferred://browser
+launchers=applications:systemsettings.desktop,preferred://filemanager,preferred://browser,applications:code.desktop
 onlyGroupWhenFull=false
 
 [Containments][112][Applets][143]
