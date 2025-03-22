@@ -201,7 +201,7 @@ ToolBoxButtonState=topcenter
 ToolBoxButtonX=444
 
 [Containments][84][Wallpaper][org.kde.image][General]
-Image=/home/martin/.local/share/wallpapers/NOcYra-Dracula-Wallpapers/dracula-purplish.png
+Image=/home/martin/.local/share/wallpapers/Bonny-Star Wallpaper-Without Logo.png
 SlidePaths=/home/martin/.local/share/wallpapers/,/usr/share/wallpapers/
 
 [Containments][85]
@@ -233,7 +233,7 @@ SlidePaths=/home/martin/.local/share/wallpapers/,/usr/share/wallpapers/
 SelectedShader=./Shader/Shader_2D_Clouds.qml
 
 [Containments][85][Wallpaper][org.kde.image][General]
-Image=/home/martin/.local/share/wallpapers/NOcYra-Dracula-Wallpapers/dracula-purplish.png
+Image=/home/martin/.local/share/wallpapers/Bonny-Star Wallpaper-Without Logo.png
 SlidePaths=/home/martin/.local/share/wallpapers/,/usr/share/wallpapers/
 
 [Containments][86]
