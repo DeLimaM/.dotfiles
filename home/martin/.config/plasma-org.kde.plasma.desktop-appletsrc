@@ -39,12 +39,12 @@ plugin=org.kde.plasma.systemmonitor.net
 
 [Containments][112][Applets][115][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=55
+PreloadWeight=60
 
 [Containments][112][Applets][115][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
 title=Network speed
-updateRateLimit=3000
+updateRateLimit=2500
 
 [Containments][112][Applets][115][Configuration][ConfigDialog]
 DialogHeight=540
@@ -89,10 +89,18 @@ plugin=org.kde.plasma.kickoff
 [Containments][112][Applets][143][Configuration]
 PreloadWeight=100
 popupHeight=514
-popupWidth=651
+popupWidth=669
+
+[Containments][112][Applets][143][Configuration][ConfigDialog]
+DialogHeight=623
+DialogWidth=726
 
 [Containments][112][Applets][143][Configuration][General]
+applicationsDisplay=0
+compactMode=true
 favoritesPortedToKAstats=true
+showActionButtonCaptions=false
+systemFavorites=suspend\\,hibernate\\,reboot\\,shutdown
 
 [Containments][112][ConfigDialog]
 DialogHeight=84
@@ -175,7 +183,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][117][General]
-extraItems=org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.battery,Discover Notifier_org.kde.DiscoverNotifier,org.kde.plasma.networkmanagement
+extraItems=org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.networkmanagement
 hiddenItems=Discover Notifier_org.kde.DiscoverNotifier
 knownItems=org.kde.plasma.bluetooth,org.kde.plasma.mediacontroller,org.kde.plasma.keyboardlayout,org.kde.kscreen,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.vault,org.kde.plasma.printmanager,org.kde.kupapplet,org.kde.plasma.clipboard,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol
 showAllItems=true
@@ -274,7 +282,7 @@ PreloadWeight=60
 [Containments][86][Applets][111][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
 title=Network speed
-updateRateLimit=2000
+updateRateLimit=2500
 
 [Containments][86][Applets][111][Configuration][ConfigDialog]
 DialogHeight=540
@@ -294,7 +302,7 @@ plugin=org.kde.plasma.kickoff
 [Containments][86][Applets][87][Configuration]
 PreloadWeight=100
 popupHeight=514
-popupWidth=651
+popupWidth=655
 
 [Containments][86][Applets][87][Configuration][General]
 favoritesPortedToKAstats=true
@@ -322,7 +330,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][86][Applets][91][Configuration]
-PreloadWeight=65
+PreloadWeight=75
 SystrayContainmentId=92
 
 [Containments][86][ConfigDialog]
@@ -356,6 +364,9 @@ PreloadWeight=42
 immutability=1
 plugin=org.kde.plasma.volume
 
+[Containments][92][Applets][103][Configuration]
+PreloadWeight=55
+
 [Containments][92][Applets][103][Configuration][General]
 migrated=true
 
@@ -373,9 +384,15 @@ PreloadWeight=42
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
+[Containments][92][Applets][109][Configuration]
+PreloadWeight=55
+
 [Containments][92][Applets][110]
 immutability=1
 plugin=org.kde.plasma.bluetooth
+
+[Containments][92][Applets][110][Configuration]
+PreloadWeight=55
 
 [Containments][92][Applets][93][Configuration]
 PreloadWeight=42

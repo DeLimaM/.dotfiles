@@ -200,24 +200,94 @@ view_actual_size=Meta+0,Meta+0,Zoom to Actual Size
 view_zoom_in=Meta++\tMeta+=,Meta++,Zoom In
 view_zoom_out=Meta+-,Meta+-,Zoom Out
 
+[libreoffice-calc.desktop]
+NewDocument=none,none,New Spreadsheet
+_k_friendly_name=LibreOffice Calc
+_launch=none,none,Launch LibreOffice Calc
+
+[libreoffice-draw.desktop]
+NewDocument=none,none,New Drawing
+_k_friendly_name=LibreOffice Draw
+_launch=none,none,Launch LibreOffice Draw
+
+[libreoffice-impress.desktop]
+NewDocument=none,none,New Presentation
+_k_friendly_name=LibreOffice Impress
+_launch=none,none,Launch LibreOffice Impress
+
+[libreoffice-math.desktop]
+NewDocument=none,none,New Formula
+_k_friendly_name=LibreOffice Math
+_launch=none,none,Launch LibreOffice Math
+
+[libreoffice-startcenter.desktop]
+Base=none,none,Base
+Calc=none,none,Calc
+Draw=none,none,Draw
+Impress=none,none,Impress
+Math=none,none,Math
+Writer=none,none,Writer
+_k_friendly_name=LibreOffice Start Center
+_launch=none,none,Launch LibreOffice Start Center
+
+[libreoffice-writer.desktop]
+NewDocument=none,none,New Document
+_k_friendly_name=LibreOffice Writer
+_launch=none,none,Launch LibreOffice Writer
+
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,,Media volume down
-mediavolumeup=none,,Media volume up
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
 nextmedia=Media Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,,Play media playback
+playmedia=none,none,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
+
+[org.kde.contactprintthemeeditor.desktop]
+_k_friendly_name=Contact Print Theme Editor
+_launch=none,none,Launch Contact Print Theme Editor
+
+[org.kde.contactthemeeditor.desktop]
+_k_friendly_name=Contact Theme Editor
+_launch=none,none,Launch Contact Theme Editor
 
 [org.kde.dolphin.desktop]
 _k_friendly_name=Dolphin
 _launch=Meta+E,Meta+E,Dolphin
 
+[org.kde.dragonplayer.desktop]
+_k_friendly_name=Dragon Player
+_launch=none,none,Launch Dragon Player
+
+[org.kde.headerthemeeditor.desktop]
+_k_friendly_name=KMail Header Theme Editor
+_launch=none,none,Launch KMail Header Theme Editor
+
+[org.kde.juk.desktop]
+_k_friendly_name=JuK
+_launch=none,none,Launch JuK
+
+[org.kde.kaddressbook.desktop]
+NewContact=none,none,New Contact...
+_k_friendly_name=KAddressBook
+_launch=none,none,Launch KAddressBook
+
 [org.kde.kcalc.desktop]
 _k_friendly_name=KCalc
 _launch=Launch (1),Launch (1),KCalc
+
+[org.kde.khelpcenter.desktop]
+_k_friendly_name=Help
+_launch=none,none,Launch Help
+
+[org.kde.kmail2.desktop]
+CheckMail=none,none,Check Mail
+Composer=none,none,New Message...
+_k_friendly_name=KMail
+_launch=none,none,Launch KMail
 
 [org.kde.konsole.desktop]
 NewTab=none,none,Open a New Tab
@@ -225,14 +295,30 @@ NewWindow=none,none,Open a New Window
 _k_friendly_name=Konsole
 _launch=Ctrl+Alt+T,Ctrl+Alt+T,Konsole
 
+[org.kde.korganizer.desktop]
+_k_friendly_name=KOrganizer
+_launch=none,none,Launch KOrganizer
+
 [org.kde.krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Run command on clipboard contents
 _k_friendly_name=KRunner
 _launch=Alt+Space\tAlt+F2\tSearch,Alt+Space\tAlt+F2\tSearch,KRunner
 
+[org.kde.ktnef.desktop]
+_k_friendly_name=KTnef
+_launch=none,none,Launch KTnef
+
+[org.kde.okular.desktop]
+_k_friendly_name=Okular
+_launch=none,none,Launch Okular
+
 [org.kde.plasma.emojier.desktop]
 _k_friendly_name=Emoji Selector
 _launch=Meta+.\tMeta+Ctrl+Alt+Shift+Space,Meta+.\tMeta+Ctrl+Alt+Shift+Space,Emoji Selector
+
+[org.kde.sieveeditor.desktop]
+_k_friendly_name=Sieve Editor
+_launch=none,none,Launch Sieve Editor
 
 [org.kde.spectacle.desktop]
 ActiveWindowScreenShot=Meta+Print,Meta+Print,Capture Active Window
@@ -258,7 +344,7 @@ Turn Off Screen=none,none,Turn Off Screen
 _k_friendly_name=Power Management
 
 [plasmashell]
-_k_friendly_name=Activity switching
+_k_friendly_name=Plasma
 activate task manager entry 1=Meta+1,Meta+1,Activate Task Manager Entry 1
 activate task manager entry 10=none,Meta+0,Activate Task Manager Entry 10
 activate task manager entry 2=Meta+2,Meta+2,Activate Task Manager Entry 2
@@ -269,31 +355,31 @@ activate task manager entry 6=Meta+6,Meta+6,Activate Task Manager Entry 6
 activate task manager entry 7=Meta+7,Meta+7,Activate Task Manager Entry 7
 activate task manager entry 8=Meta+8,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=Meta+9,Meta+9,Activate Task Manager Entry 9
-activate widget 140=,none,Activate Icons-only Task Manager Widget
-activate widget 143=,none,Activate Application Launcher Widget
+activate widget 140=none,none,Activate Icons-only Task Manager Widget
+activate widget 143=none,none,Activate Application Launcher Widget
 activate widget 30=none,none,Activate Application Launcher Widget
 activate widget 4=Alt+F1,none,Activate Application Launcher Widget
 activate widget 56=none,none,Activate Application Launcher Widget
 activate widget 80=none,none,Activate Network Widget
-activate widget 83=,none,Activate Icons-only Task Manager Widget
-activate widget 87=,none,Activate Application Launcher Widget
-clear-history=none,,Clear Clipboard History
+activate widget 83=none,none,Activate Icons-only Task Manager Widget
+activate widget 87=none,none,Activate Application Launcher Widget
+clear-history=none,none,Clear Clipboard History
 clipboard_action=Meta+Ctrl+X,Meta+Ctrl+X,Automatic Action Popup Menu
 cycle-panels=Meta+Alt+P,Meta+Alt+P,Move keyboard focus between panels
-cycleNextAction=none,,Next History Item
-cyclePrevAction=none,,Previous History Item
-edit_clipboard=none,,Edit Contents…
+cycleNextAction=none,none,Next History Item
+cyclePrevAction=none,none,Previous History Item
+edit_clipboard=none,none,Edit Contents…
 manage activities=Meta+Q,Meta+Q,Show Activity Switcher
 next activity=Meta+Tab,Meta+Tab,Walk through activities
 previous activity=Meta+Shift+Tab,Meta+Shift+Tab,Walk through activities (Reverse)
 repeat_action=Meta+Ctrl+R,Meta+Ctrl+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12,Ctrl+F12,Show Desktop
-show-barcode=none,,Show Barcode…
+show-barcode=none,none,Show Barcode…
 show-on-mouse-pos=Meta+V,Meta+V,Show Items at Mouse Position
 stop current activity=Meta+S,Meta+S,Stop Current Activity
 switch to next activity=none,,Switch to Next Activity
 switch to previous activity=none,,Switch to Previous Activity
-toggle do not disturb=none,,Toggle do not disturb
+toggle do not disturb=none,none,Toggle do not disturb
 
 [systemsettings.desktop]
 _k_friendly_name=System Settings
