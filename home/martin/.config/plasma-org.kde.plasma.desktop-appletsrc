@@ -10,7 +10,7 @@ RightButton;NoModifier=org.kde.contextmenu
 activityId=
 formfactor=2
 immutability=1
-lastScreen=1
+lastScreen=0
 location=4
 plugin=org.kde.panel
 wallpaperplugin=org.kde.image
@@ -113,7 +113,7 @@ AppletOrder=143;140;136;116;115;114
 activityId=
 formfactor=2
 immutability=1
-lastScreen=-1
+lastScreen=0
 location=4
 plugin=org.kde.plasma.private.systemtray
 popupHeight=432
@@ -189,10 +189,12 @@ knownItems=org.kde.plasma.bluetooth,org.kde.plasma.mediacontroller,org.kde.plasm
 showAllItems=true
 shownItems=org.kde.plasma.volume,org.kde.plasma.battery
 
-[Containments][84]
-ItemGeometries-1920x1080=
+[Containments][144]
+ItemGeometries-1718x920=
+ItemGeometries-1718x998=
+ItemGeometries-2354x1276=
 ItemGeometriesHorizontal=
-activityId=2153be54-5de5-4178-ab9a-77c1aa3c251e
+activityId=f75c524f-490a-4b7b-8b91-6c674291659b
 formfactor=0
 immutability=1
 lastScreen=0
@@ -200,152 +202,24 @@ location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
-[Containments][84][ConfigDialog]
+[Containments][144][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
 
-[Containments][84][General]
+[Containments][144][General]
 ToolBoxButtonState=topcenter
-ToolBoxButtonX=444
+ToolBoxButtonX=458
 
-[Containments][84][Wallpaper][org.kde.image][General]
-Image=/home/martin/.local/share/wallpapers/Bonny-Star Wallpaper-Without Logo.png
+[Containments][144][Wallpaper][org.kde.image][General]
+Image=/home/martin/Downloads/purple-gradient.jpg
 SlidePaths=/home/martin/.local/share/wallpapers/,/usr/share/wallpapers/
-
-[Containments][85]
-ItemGeometries-1920x1080=
-ItemGeometriesHorizontal=
-activityId=2153be54-5de5-4178-ab9a-77c1aa3c251e
-formfactor=0
-immutability=1
-lastScreen=1
-location=0
-plugin=org.kde.plasma.folder
-wallpaperplugin=org.kde.image
-
-[Containments][85][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][85][General]
-ToolBoxButtonState=topcenter
-ToolBoxButtonX=444
-
-[Containments][85][Wallpaper][com.github.zren.inactiveblur][General]
-FillMode=2
-Image=/home/martin/Downloads/Blue Sky.png
-SlideInterval=900
-SlidePaths=/home/martin/.local/share/wallpapers/,/usr/share/wallpapers/
-
-[Containments][85][Wallpaper][online.knowmad.shaderwallpaper][General]
-SelectedShader=./Shader/Shader_2D_Clouds.qml
-
-[Containments][85][Wallpaper][org.kde.image][General]
-Image=/home/martin/.local/share/wallpapers/Bonny-Star Wallpaper-Without Logo.png
-SlidePaths=/home/martin/.local/share/wallpapers/,/usr/share/wallpapers/
-
-[Containments][86]
-activityId=
-formfactor=2
-immutability=1
-lastScreen=0
-location=4
-plugin=org.kde.panel
-wallpaperplugin=org.kde.image
-
-[Containments][86][Applets][104]
-immutability=1
-plugin=org.kde.plasma.digitalclock
-
-[Containments][86][Applets][104][Configuration]
-PreloadWeight=60
-popupHeight=450
-popupWidth=396
-
-[Containments][86][Applets][104][Configuration][Appearance]
-showDate=false
-showSeconds=true
-use24hFormat=2
-
-[Containments][86][Applets][104][Configuration][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][86][Applets][111]
-immutability=1
-plugin=org.kde.plasma.systemmonitor.net
-
-[Containments][86][Applets][111][Configuration]
-CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=60
-
-[Containments][86][Applets][111][Configuration][Appearance]
-chartFace=org.kde.ksysguard.linechart
-title=Network speed
-updateRateLimit=2500
-
-[Containments][86][Applets][111][Configuration][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][86][Applets][111][Configuration][SensorColors]
-network/all/download=124,96,163
-network/all/upload=135,163,96
-
-[Containments][86][Applets][111][Configuration][Sensors]
-highPrioritySensorIds=["network/all/download","network/all/upload"]
-
-[Containments][86][Applets][87]
-immutability=1
-plugin=org.kde.plasma.kickoff
-
-[Containments][86][Applets][87][Configuration]
-PreloadWeight=100
-popupHeight=514
-popupWidth=655
-
-[Containments][86][Applets][87][Configuration][General]
-favoritesPortedToKAstats=true
-
-[Containments][86][Applets][87][Configuration][Shortcuts]
-global=Alt+F1
-
-[Containments][86][Applets][88]
-immutability=1
-plugin=org.kde.plasma.pager
-
-[Containments][86][Applets][89]
-immutability=1
-plugin=org.kde.plasma.icontasks
-
-[Containments][86][Applets][89][Configuration][General]
-launchers=applications:systemsettings.desktop,preferred://filemanager,preferred://browser
-
-[Containments][86][Applets][90]
-immutability=1
-plugin=org.kde.plasma.marginsseparator
-
-[Containments][86][Applets][91]
-immutability=1
-plugin=org.kde.plasma.systemtray
-
-[Containments][86][Applets][91][Configuration]
-PreloadWeight=75
-SystrayContainmentId=92
-
-[Containments][86][ConfigDialog]
-DialogHeight=84
-DialogWidth=1920
-
-[Containments][86][General]
-AppletOrder=87;88;89;90;91;111;104
 
 [Containments][92]
 activityId=
 formfactor=2
 immutability=1
 lastScreen=0
-location=4
+location=3
 plugin=org.kde.plasma.private.systemtray
 popupHeight=432
 popupWidth=432
@@ -365,7 +239,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][92][Applets][103][Configuration]
-PreloadWeight=55
+PreloadWeight=47
 
 [Containments][92][Applets][103][Configuration][General]
 migrated=true
@@ -377,6 +251,9 @@ PreloadWeight=42
 immutability=1
 plugin=org.kde.plasma.battery
 
+[Containments][92][Applets][107][Configuration]
+PreloadWeight=42
+
 [Containments][92][Applets][108][Configuration]
 PreloadWeight=42
 
@@ -385,7 +262,7 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][92][Applets][109][Configuration]
-PreloadWeight=55
+PreloadWeight=47
 
 [Containments][92][Applets][110]
 immutability=1
@@ -418,6 +295,9 @@ PreloadWeight=42
 [Containments][92][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
+
+[Containments][92][Configuration]
+PreloadWeight=42
 
 [Containments][92][General]
 extraItems=org.kde.plasma.bluetooth,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.battery

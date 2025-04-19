@@ -1,10 +1,14 @@
 [KFileDialog Settings]
-Recent Files[$e]=Blue Sky.png,file:$HOME/Downloads/Blue Sky.png
-Recent URLs[$e]=file:$HOME/Downloads/
+Recent Files[$e]=Blue Sky.png,file:$HOME/Downloads/pacman-solarized.png,file:$HOME/Downloads/purple-gradient.jpg
+Recent URLs[$e]=file:$HOME/Downloads/,file:$HOME/Pictures/,file:$HOME/
 detailViewIconSize=16
 
 [PlasmaTransientsConfig]
 PreloadWeight=0
+
+[PlasmaTransientsConfig][ConfigDialog]
+DialogHeight=84
+DialogWidth=1718
 
 [PlasmaViews][Panel 112]
 alignment=132

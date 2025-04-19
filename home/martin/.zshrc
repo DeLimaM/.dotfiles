@@ -1,7 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Automatically install Oh My Zsh if not present
+# Install curl
+if ! command -v curl &>/dev/null; then
+    echo "Installing curl..."
+    sudo apt update && sudo apt install -y curl
+fi
+
+# Install oh my zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
     echo "Installing Oh My Zsh..."
     KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
@@ -14,7 +20,7 @@ ZSH_CUSTOM=${ZSH_CUSTOM:-$ZSH/custom}
 THEMES_DIR="$ZSH_CUSTOM/themes"
 SPACESHIP_THEME="$THEMES_DIR/spaceship-prompt"
 
-# Clone Spaceship theme if not present
+# Clone Spaceship theme
 if [[ ! -d "$SPACESHIP_THEME" ]]; then
     echo "Cloning Spaceship theme..."
     git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$SPACESHIP_THEME"
@@ -50,7 +56,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
 
 # .dotfiles repo
@@ -69,14 +74,5 @@ function cl() {
 }
 alias cd="cl"
 
-# KDE Plasma Sync Alias
-alias sync-kde="dotfiles add ~/.config/plasma-org.kde.plasma.desktop-appletsrc \
-    ~/.config/plasmashellrc \
-    ~/.config/kdeglobals \
-    ~/.config/kwinrc \
-    ~/.config/khotkeysrc \
-    ~/.config/kglobalshortcutsrc \
-    ~/.config/dolphinrc \
-    ~/.config/krunnerrc \
-    ~/.config/kscreenlockerrc && \
-    dotfiles commit -m 'Auto-sync KDE Plasma settings'"
+# Sync Alias
+alias sync-all="dotfiles add -u && dotfiles commit -m 'Auto-sync all tracked files'"
