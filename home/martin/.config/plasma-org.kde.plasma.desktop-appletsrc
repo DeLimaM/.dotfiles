@@ -62,7 +62,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][112][Applets][116][Configuration]
-PreloadWeight=60
+PreloadWeight=65
 SystrayContainmentId=117
 
 [Containments][112][Applets][136]
@@ -154,15 +154,17 @@ PreloadWeight=42
 immutability=1
 plugin=org.kde.plasma.volume
 
+[Containments][117][Applets][128][Configuration]
+PreloadWeight=55
+
 [Containments][117][Applets][128][Configuration][General]
 migrated=true
 
 [Containments][117][Applets][129][Configuration]
 PreloadWeight=42
 
-[Containments][117][Applets][130]
-immutability=1
-plugin=org.kde.plasma.battery
+[Containments][117][Applets][130][Configuration]
+PreloadWeight=42
 
 [Containments][117][Applets][131][Configuration]
 PreloadWeight=42
@@ -183,15 +185,16 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][117][General]
-extraItems=org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.networkmanagement
+extraItems=org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.networkmanagement
 hiddenItems=Discover Notifier_org.kde.DiscoverNotifier
 knownItems=org.kde.plasma.bluetooth,org.kde.plasma.mediacontroller,org.kde.plasma.keyboardlayout,org.kde.kscreen,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.vault,org.kde.plasma.printmanager,org.kde.kupapplet,org.kde.plasma.clipboard,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol
 showAllItems=true
-shownItems=org.kde.plasma.volume,org.kde.plasma.battery
+shownItems=org.kde.plasma.volume
 
 [Containments][144]
 ItemGeometries-1718x920=
 ItemGeometries-1718x998=
+ItemGeometries-1920x1080=
 ItemGeometries-2354x1276=
 ItemGeometriesHorizontal=
 activityId=f75c524f-490a-4b7b-8b91-6c674291659b
