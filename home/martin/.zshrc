@@ -67,12 +67,16 @@ fi
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=/"
 dotfiles config --local status.showUntrackedFiles no
 
+# Sync function
+function sync-all() {
+    dotfiles add -u
+    dotfiles commit -m "${1:-Auto-sync all tracked files}"
+}
+alias sync-all="sync-all"
+
 # ll & cd
 alias ll="ls -alF"
 function cl() {
     builtin cd "$@" && ll
 }
 alias cd="cl"
-
-# Sync Alias
-alias sync-all="dotfiles add -u && dotfiles commit -m 'Auto-sync all tracked files'"

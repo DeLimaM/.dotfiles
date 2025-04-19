@@ -12,7 +12,12 @@ Rows=1
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
+kwin4_effect_dimscreenEnabled=true
+kwin4_effect_maximizeEnabled=false
 kwin4_effect_translucencyEnabled=true
+mousemarkEnabled=true
+sheetEnabled=true
+zoomEnabled=false
 
 [Tiling]
 padding=4
