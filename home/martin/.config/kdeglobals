@@ -96,8 +96,12 @@ ForegroundVisited=68,71,90
 [General]
 ColorScheme=DraculaPurple
 ColorSchemeHash=e44c8d483c47a28c7d0e32e6b41dd227803affe5
-XftHintStyle=hintnone
+XftHintStyle=hintslight
 XftSubPixel=none
+font=Hack,10,-1,5,50,0,0,0,0,0
+menuFont=Hack,10,-1,5,50,0,0,0,0,0
+smallestReadableFont=Hack,8,-1,5,50,0,0,0,0,0
+toolBarFont=Hack,10,-1,5,50,0,0,0,0,0
 
 [Icons]
 Theme=breeze-dark
@@ -105,6 +109,7 @@ Theme=breeze-dark
 [KDE]
 AnimationDurationFactor=0
 LookAndFeelPackage=Dracula-purple
+widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false
@@ -129,6 +134,7 @@ View Style=DetailTree
 [WM]
 activeBackground=47,52,63
 activeBlend=47,52,63
+activeFont=Hack,10,-1,5,50,0,0,0,0,0
 activeForeground=211,218,227
 inactiveBackground=47,52,63
 inactiveBlend=47,52,63
