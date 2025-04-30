@@ -42,7 +42,7 @@ CurrentPreset=org.kde.plasma.systemmonitor
 PreloadWeight=70
 
 [Containments][112][Applets][115][Configuration][Appearance]
-chartFace=org.kde.ksysguard.linechart
+chartFace=org.kde.ksysguard.textonly
 title=Network speed
 updateRateLimit=2500
 
@@ -54,8 +54,11 @@ DialogWidth=720
 network/all/download=124,96,163
 network/all/upload=135,163,96
 
+[Containments][112][Applets][115][Configuration][SensorLabels]
+network/all/download=Download
+
 [Containments][112][Applets][115][Configuration][Sensors]
-highPrioritySensorIds=["network/all/download","network/all/upload"]
+highPrioritySensorIds=["network/all/download"]
 
 [Containments][112][Applets][116]
 immutability=1
@@ -108,7 +111,7 @@ plugin=org.kde.plasma.systemmonitor.cpu
 
 [Containments][112][Applets][155][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=65
+PreloadWeight=70
 
 [Containments][112][Applets][155][Configuration][Appearance]
 chartFace=org.kde.ksysguard.textonly
@@ -181,7 +184,7 @@ disk/all/read=90,87,68
 disk/all/write=68,71,90
 
 [Containments][112][Applets][158][Configuration][SensorLabels]
-disk/all/read=Disk Read
+disk/all/read=Read
 
 [Containments][112][Applets][158][Configuration][Sensors]
 highPrioritySensorIds=["disk/all/read"]
@@ -207,7 +210,7 @@ disk/all/read=90,87,68
 disk/all/write=68,71,90
 
 [Containments][112][Applets][159][Configuration][SensorLabels]
-disk/all/write=Disk Write
+disk/all/write=Write
 
 [Containments][112][Applets][159][Configuration][Sensors]
 highPrioritySensorIds=["disk/all/write"]
@@ -216,32 +219,55 @@ highPrioritySensorIds=["disk/all/write"]
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
-[Containments][112][Applets][166]
-immutability=1
-plugin=org.kde.plasma.panelspacer
-transient=true
-
-[Containments][112][Applets][166][Configuration][General]
-expanding=false
-
 [Containments][112][Applets][167]
 immutability=1
 plugin=org.kde.plasma.panelspacer
 
-[Containments][112][Applets][168]
+[Containments][112][Applets][170]
 immutability=1
-plugin=org.kde.plasma.marginsseparator
+plugin=org.kde.plasma.systemmonitor.net
 
-[Containments][112][Applets][169]
+[Containments][112][Applets][170][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
+[Containments][112][Applets][170][Configuration][Appearance]
+chartFace=org.kde.ksysguard.textonly
+title=Network speed
+
+[Containments][112][Applets][170][Configuration][ConfigDialog]
+DialogHeight=510
+DialogWidth=680
+
+[Containments][112][Applets][170][Configuration][SensorColors]
+network/all/download=68,71,90
+network/all/upload=90,87,68
+
+[Containments][112][Applets][170][Configuration][SensorLabels]
+network/all/upload=Upload
+
+[Containments][112][Applets][170][Configuration][Sensors]
+highPrioritySensorIds=["network/all/upload"]
+
+[Containments][112][Applets][172]
 immutability=1
-plugin=org.kde.plasma.marginsseparator
+plugin=org.kde.plasma.panelspacer
+
+[Containments][112][Applets][172][Configuration][General]
+expanding=false
+
+[Containments][112][Applets][173]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][112][Applets][173][Configuration][General]
+expanding=false
 
 [Containments][112][ConfigDialog]
 DialogHeight=84
 DialogWidth=1920
 
 [Containments][112][General]
-AppletOrder=143;140;167;155;168;156;169;158;159;163;116;115;152;114
+AppletOrder=143;140;167;155;156;173;158;159;172;115;170;163;116;152;114
 
 [Containments][117]
 activityId=
