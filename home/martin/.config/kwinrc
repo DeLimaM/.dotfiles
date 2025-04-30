@@ -12,11 +12,15 @@ Rows=1
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
+diminactiveEnabled=true
 kwin4_effect_dimscreenEnabled=true
-kwin4_effect_maximizeEnabled=false
+kwin4_effect_fadeEnabled=true
+kwin4_effect_scaleEnabled=false
 kwin4_effect_translucencyEnabled=true
 mousemarkEnabled=true
 sheetEnabled=true
+thumbnailasideEnabled=true
+touchpointsEnabled=true
 zoomEnabled=false
 
 [Tiling]

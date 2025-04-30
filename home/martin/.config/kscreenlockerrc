@@ -4,3 +4,7 @@ update_info=kscreenlocker.upd:0.1-autolock
 [Daemon]
 Autolock=false
 Timeout=20
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=/home/martin/Downloads/purple-gradient.jpg
+PreviewImage=/home/martin/Downloads/purple-gradient.jpg

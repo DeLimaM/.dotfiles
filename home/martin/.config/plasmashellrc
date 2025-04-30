@@ -1,6 +1,6 @@
 [KFileDialog Settings]
-Recent Files[$e]=Blue Sky.png,file:$HOME/Downloads/pacman-solarized.png,file:$HOME/Downloads/purple-gradient.jpg
-Recent URLs[$e]=file:$HOME/Downloads/,file:$HOME/Pictures/,file:$HOME/
+Recent Files[$e]=Blue Sky.png,file:$HOME/Pictures/wallpapers/purple-gradient.jpg,file:$HOME/Downloads/pacman-solarized.png
+Recent URLs[$e]=file:$HOME/Downloads/,file:$HOME/Pictures/,file:$HOME/,file:$HOME/Documents/
 detailViewIconSize=16
 
 [PlasmaTransientsConfig]
