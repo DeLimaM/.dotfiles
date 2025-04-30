@@ -20,7 +20,7 @@ immutability=1
 plugin=org.kde.plasma.digitalclock
 
 [Containments][112][Applets][114][Configuration]
-PreloadWeight=60
+PreloadWeight=65
 popupHeight=450
 popupWidth=396
 
@@ -39,7 +39,7 @@ plugin=org.kde.plasma.systemmonitor.net
 
 [Containments][112][Applets][115][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=60
+PreloadWeight=70
 
 [Containments][112][Applets][115][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
@@ -64,10 +64,6 @@ plugin=org.kde.plasma.systemtray
 [Containments][112][Applets][116][Configuration]
 PreloadWeight=65
 SystrayContainmentId=117
-
-[Containments][112][Applets][136]
-immutability=1
-plugin=org.kde.plasma.panelspacer
 
 [Containments][112][Applets][140]
 immutability=1
@@ -102,76 +98,9 @@ favoritesPortedToKAstats=true
 showActionButtonCaptions=false
 systemFavorites=suspend\\,hibernate\\,reboot\\,shutdown
 
-[Containments][112][Applets][148]
-immutability=1
-plugin=org.kde.plasma.binaryclock
-
-[Containments][112][Applets][148][Configuration]
-PreloadWeight=55
-
-[Containments][112][Applets][151]
-immutability=1
-plugin=org.kde.plasma.systemmonitor.memory
-transient=true
-
-[Containments][112][Applets][151][Configuration]
-CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=100
-
-[Containments][112][Applets][151][Configuration][Appearance]
-chartFace=org.kde.ksysguard.horizontalbars
-showTitle=true
-title=RAM
-updateRateLimit=2500
-
-[Containments][112][Applets][151][Configuration][ConfigDialog]
-DialogHeight=510
-DialogWidth=680
-
-[Containments][112][Applets][151][Configuration][FaceGrid][Appearance]
-chartFace=org.kde.ksysguard.linechart
-showTitle=false
-
-[Containments][112][Applets][151][Configuration][SensorColors]
-disk/all/usedPercent=90,87,68
-disk/dda31a4b-59da-405c-9304-62484596ce48/usedPercent=68,71,90
-memory/physical/total=90,68,70
-memory/physical/used=68,71,90
-
-[Containments][112][Applets][151][Configuration][Sensors]
-highPrioritySensorIds=[]
-lowPrioritySensorIds=["memory/physical/used"]
-totalSensors=["memory/physical/total"]
-
-[Containments][112][Applets][151][Configuration][org.kde.ksysguard.textonly][General]
-groupByTotal=true
-
 [Containments][112][Applets][152]
 immutability=1
 plugin=org.kde.plasma.marginsseparator
-
-[Containments][112][Applets][153]
-immutability=1
-plugin=org.kde.plasma.marginsseparator
-
-[Containments][112][Applets][154]
-immutability=1
-plugin=org.kde.plasma.systemmonitor.cpu
-
-[Containments][112][Applets][154][Configuration]
-CurrentPreset=org.kde.plasma.systemmonitor
-
-[Containments][112][Applets][154][Configuration][Appearance]
-chartFace=org.kde.ksysguard.piechart
-title=Total CPU Use
-
-[Containments][112][Applets][154][Configuration][SensorColors]
-cpu/all/usage=68,71,90
-
-[Containments][112][Applets][154][Configuration][Sensors]
-highPrioritySensorIds=["cpu/all/usage"]
-lowPrioritySensorIds=["cpu/all/cpuCount","cpu/all/coreCount"]
-totalSensors=["cpu/all/usage"]
 
 [Containments][112][Applets][155]
 immutability=1
@@ -192,7 +121,7 @@ DialogHeight=510
 DialogWidth=680
 
 [Containments][112][Applets][155][Configuration][SensorColors]
-cpu/all/usage=0,0,192
+cpu/all/usage=170,85,127
 
 [Containments][112][Applets][155][Configuration][SensorLabels]
 cpu/all/usage=CPU
@@ -220,7 +149,7 @@ DialogHeight=510
 DialogWidth=680
 
 [Containments][112][Applets][156][Configuration][SensorColors]
-memory/physical/used=0,192,0
+memory/physical/used=0,85,127
 
 [Containments][112][Applets][156][Configuration][SensorLabels]
 memory/physical/used=RAM
@@ -230,12 +159,89 @@ highPrioritySensorIds=["memory/physical/used"]
 lowPrioritySensorIds=["memory/physical/total"]
 totalSensors=["memory/physical/usedPercent"]
 
+[Containments][112][Applets][158]
+immutability=1
+plugin=org.kde.plasma.systemmonitor.diskactivity
+
+[Containments][112][Applets][158][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+PreloadWeight=55
+
+[Containments][112][Applets][158][Configuration][Appearance]
+chartFace=org.kde.ksysguard.textonly
+title=Hard Disk Activity
+updateRateLimit=2500
+
+[Containments][112][Applets][158][Configuration][ConfigDialog]
+DialogHeight=510
+DialogWidth=680
+
+[Containments][112][Applets][158][Configuration][SensorColors]
+disk/all/read=90,87,68
+disk/all/write=68,71,90
+
+[Containments][112][Applets][158][Configuration][SensorLabels]
+disk/all/read=Disk Read
+
+[Containments][112][Applets][158][Configuration][Sensors]
+highPrioritySensorIds=["disk/all/read"]
+
+[Containments][112][Applets][159]
+immutability=1
+plugin=org.kde.plasma.systemmonitor.diskactivity
+
+[Containments][112][Applets][159][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
+[Containments][112][Applets][159][Configuration][Appearance]
+chartFace=org.kde.ksysguard.textonly
+title=Hard Disk Activity
+updateRateLimit=2500
+
+[Containments][112][Applets][159][Configuration][ConfigDialog]
+DialogHeight=510
+DialogWidth=680
+
+[Containments][112][Applets][159][Configuration][SensorColors]
+disk/all/read=90,87,68
+disk/all/write=68,71,90
+
+[Containments][112][Applets][159][Configuration][SensorLabels]
+disk/all/write=Disk Write
+
+[Containments][112][Applets][159][Configuration][Sensors]
+highPrioritySensorIds=["disk/all/write"]
+
+[Containments][112][Applets][163]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][112][Applets][166]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+transient=true
+
+[Containments][112][Applets][166][Configuration][General]
+expanding=false
+
+[Containments][112][Applets][167]
+immutability=1
+plugin=org.kde.plasma.panelspacer
+
+[Containments][112][Applets][168]
+immutability=1
+plugin=org.kde.plasma.marginsseparator
+
+[Containments][112][Applets][169]
+immutability=1
+plugin=org.kde.plasma.marginsseparator
+
 [Containments][112][ConfigDialog]
 DialogHeight=84
 DialogWidth=1920
 
 [Containments][112][General]
-AppletOrder=154;143;140;136;156;155;153;116;115;152;114;148
+AppletOrder=143;140;167;155;168;156;169;158;159;163;116;115;152;114
 
 [Containments][117]
 activityId=
@@ -332,6 +338,19 @@ lastScreen=0
 location=0
 plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
+
+[Containments][144][Applets][159][Configuration][Appearance]
+chartFace=org.kde.ksysguard.textonly
+
+[Containments][144][Applets][159][Configuration][SensorColors]
+disk/all/read=90,87,68
+disk/all/write=68,71,90
+
+[Containments][144][Applets][159][Configuration][SensorLabels]
+disk/all/write=Disk Write
+
+[Containments][144][Applets][159][Configuration][Sensors]
+highPrioritySensorIds=["disk/all/write"]
 
 [Containments][144][ConfigDialog]
 DialogHeight=540
