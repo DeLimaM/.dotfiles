@@ -79,7 +79,7 @@ DialogWidth=720
 
 [Containments][112][Applets][140][Configuration][General]
 groupPopups=false
-launchers=applications:systemsettings.desktop,preferred://filemanager,applications:code.desktop,preferred://browser,applications:google-chrome.desktop,applications:org.kde.konsole.desktop
+launchers=applications:systemsettings.desktop,applications:code.desktop,preferred://browser,applications:google-chrome.desktop,applications:org.kde.konsole.desktop
 onlyGroupWhenFull=false
 
 [Containments][112][Applets][143]
@@ -89,7 +89,7 @@ plugin=org.kde.plasma.kickoff
 [Containments][112][Applets][143][Configuration]
 PreloadWeight=100
 popupHeight=514
-popupWidth=669
+popupWidth=695
 
 [Containments][112][Applets][143][Configuration][ConfigDialog]
 DialogHeight=623
