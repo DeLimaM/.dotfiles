@@ -233,6 +233,7 @@ CurrentPreset=org.kde.plasma.systemmonitor
 [Containments][112][Applets][170][Configuration][Appearance]
 chartFace=org.kde.ksysguard.textonly
 title=Network speed
+updateRateLimit=2500
 
 [Containments][112][Applets][170][Configuration][ConfigDialog]
 DialogHeight=510
