@@ -255,6 +255,7 @@ plugin=org.kde.plasma.panelspacer
 
 [Containments][112][Applets][172][Configuration][General]
 expanding=false
+length=60
 
 [Containments][112][Applets][173]
 immutability=1
@@ -262,6 +263,7 @@ plugin=org.kde.plasma.panelspacer
 
 [Containments][112][Applets][173][Configuration][General]
 expanding=false
+length=60
 
 [Containments][112][ConfigDialog]
 DialogHeight=84
@@ -482,6 +484,9 @@ hiddenItems=Discover Notifier_org.kde.DiscoverNotifier
 knownItems=org.kde.plasma.bluetooth,org.kde.plasma.mediacontroller,org.kde.plasma.keyboardlayout,org.kde.kscreen,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.networkmanagement,org.kde.plasma.devicenotifier,org.kde.plasma.manage-inputmethod,org.kde.plasma.vault,org.kde.plasma.printmanager,org.kde.kupapplet,org.kde.plasma.clipboard,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol
 showAllItems=true
 shownItems=org.kde.plasma.battery,org.kde.plasma.volume,org.kde.plasma.networkmanagement
+
+[Containments112Appletsts][173][Configuration][General]
+length=60
 
 [ScreenMapping]
 itemsOnDisabledScreens=
