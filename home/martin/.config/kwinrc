@@ -12,7 +12,6 @@ Rows=1
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
-diminactiveEnabled=true
 kwin4_effect_dimscreenEnabled=true
 kwin4_effect_fadeEnabled=true
 kwin4_effect_scaleEnabled=false

@@ -80,3 +80,5 @@ function cl() {
     builtin cd "$@" && ll
 }
 alias cd="cl"
+
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

@@ -111,7 +111,7 @@ plugin=org.kde.plasma.systemmonitor.cpu
 
 [Containments][112][Applets][155][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=70
+PreloadWeight=75
 
 [Containments][112][Applets][155][Configuration][Appearance]
 chartFace=org.kde.ksysguard.textonly
