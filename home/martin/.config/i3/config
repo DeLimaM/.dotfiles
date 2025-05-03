@@ -193,13 +193,16 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # feh
-exec_always --no-startup-id feh --bg-scale /home/martin/Pictures/wallpapers/purple-gradient.jpg
+exec_always --no-startup-id feh --bg-scale /home/martin/Pictures/wallpapers/dark-synth.jpg
 
-# gaps 
+# picom
+exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom.conf
+
+# gaps
 gaps inner 10
 
 # borders
 hide_edge_borders none
-default_border pixel 0
-default_floating_border pixel 0
-for_window [class="^.*"] border pixel 0
+default_border pixel 4
+default_floating_border pixel 4
+for_window [class="^.*"] border pixel 4
