@@ -42,7 +42,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier $mod+Shift
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
@@ -55,7 +55,8 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Delete kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
+# bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
+bindcode 133 --release exec "rofi -show drun -show-icons"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

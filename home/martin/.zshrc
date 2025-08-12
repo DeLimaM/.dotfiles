@@ -7,7 +7,7 @@ if ! command -v curl &>/dev/null; then
     sudo apt update && sudo apt install -y curl
 fi
 
-# Install oh my zsh
+# Install Oh My Zsh
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
     echo "Installing Oh My Zsh..."
     KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
@@ -15,10 +15,10 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-# Ensure custom theme directory exists
 ZSH_CUSTOM=${ZSH_CUSTOM:-$ZSH/custom}
 THEMES_DIR="$ZSH_CUSTOM/themes"
 SPACESHIP_THEME="$THEMES_DIR/spaceship-prompt"
+PURE_THEME="$THEMES_DIR/pure"
 
 # Clone Spaceship theme
 if [[ ! -d "$SPACESHIP_THEME" ]]; then
@@ -27,8 +27,19 @@ if [[ ! -d "$SPACESHIP_THEME" ]]; then
     ln -sf "$SPACESHIP_THEME/spaceship.zsh-theme" "$THEMES_DIR/spaceship.zsh-theme"
 fi
 
-# Set name of the theme to load
-ZSH_THEME="spaceship"
+# Clone Pure theme
+if [[ ! -d "$PURE_THEME" ]]; then
+    echo "Cloning Pure theme..."
+    git clone --depth=1 https://github.com/sindresorhus/pure.git "$PURE_THEME"
+    ln -sf "$PURE_THEME/pure.zsh" "$THEMES_DIR/pure.zsh"
+    ln -sf "$PURE_THEME/async.zsh" "$THEMES_DIR/async.zsh"
+fi
+
+# --- PURE THEME SETUP ---
+fpath+=$THEMES_DIR
+autoload -U promptinit; promptinit
+prompt pure
+# ------------------------
 
 # Custom plugins directory
 PLUGINS_DIR="$ZSH_CUSTOM/plugins"
@@ -44,7 +55,7 @@ clone_plugin_if_missing() {
     fi
 }
 
-# Install required plugins if not present
+# Install required plugins
 clone_plugin_if_missing "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
 clone_plugin_if_missing "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
 
@@ -52,10 +63,10 @@ plugins=(
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
+    kitty
 )
 
 source $ZSH/oh-my-zsh.sh
-
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
 
 # .dotfiles repo
