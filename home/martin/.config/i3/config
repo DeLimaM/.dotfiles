@@ -49,13 +49,13 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
-bindsym $mod+Shift+a kill
+bindsym $mod+Delete kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -196,13 +196,22 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-scale /home/martin/Pictures/wallpapers/dark-synth.jpg
 
 # picom
-exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom.conf
+# exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom.conf
 
 # gaps
-gaps inner 10
+gaps inner 8
 
 # borders
 hide_edge_borders none
-default_border pixel 4
-default_floating_border pixel 4
-for_window [class="^.*"] border pixel 4
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class="^.*"] border pixel 2
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #38d8a3 #285577 #ffffff #38d8a3   #38d8a3
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #1a182bff
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
