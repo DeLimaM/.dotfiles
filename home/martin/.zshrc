@@ -36,8 +36,9 @@ if [[ ! -d "$PURE_THEME" ]]; then
 fi
 
 # --- PURE THEME SETUP ---
-fpath+=$THEMES_DIR
-autoload -U promptinit; promptinit
+fpath+=$PURE_THEME
+autoload -Uz promptinit
+promptinit
 prompt pure
 # ------------------------
 
