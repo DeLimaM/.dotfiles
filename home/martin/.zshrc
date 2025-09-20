@@ -69,6 +69,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
+PROMPT='%{$fg[cyan]%}[%D{%f/%m/%y} %D{%L:%M:%S}] '$PROMPT
 
 # .dotfiles repo
 DOTFILES="$HOME/.dotfiles"
