@@ -56,7 +56,7 @@ bindsym $mod+Delete kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec rofi -show drun -show-icons -icon-theme "Papirus"
-bindcode 133 --release exec "rofi -show drun -show-icons"
+bindsym $mod+d exec "rofi -show drun -show-icons"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

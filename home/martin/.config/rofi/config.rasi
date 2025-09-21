@@ -17,7 +17,7 @@ window {
   border-color: @primary;
   border: 1;
   padding: 10;
-  width: 25%;
+  width: 30%;
   height: 25%;
 }
 mainbox {
@@ -25,7 +25,7 @@ mainbox {
   padding: 0;
 }
 message {
-  border: 1px dash 0px 0px;
+  border: 1px 0px 0px;
   border-color: @primary;
   padding: 1px;
 }
@@ -34,8 +34,8 @@ textbox {
 }
 listview {
   fixed-height: 0;
-  border: 2px dash 0px 0px;
-  border-color: @primary;
+  border: 2px 0px 0px;
+  border-color: @background-alt;
   spacing: 2px;
   scrollbar: false;
   padding: 2px 0px 0px;
@@ -95,16 +95,6 @@ entry {
   spacing: 0;
   text-color: @foreground;
 }
-prompt {
-  spacing: 0;
-  text-color: @primary;
-}
 inputbar {
-  children: [ prompt, textbox-prompt-colon, entry, case-indicator];
-}
-textbox-prompt-colon {
-  expand: false;
-  str: ":";
-  margin: 0px 0.3em 0em 0em;
-  text-color: @foreground;
+  children: [ entry, case-indicator];
 }
