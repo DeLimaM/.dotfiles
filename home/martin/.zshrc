@@ -88,7 +88,7 @@ function sync-all() {
 alias sync-all="sync-all"
 
 # ll & cd
-alias ll="ls -alF"
+alias ll="ls -al"
 function cl() {
     builtin cd "$@" && ll
 }
