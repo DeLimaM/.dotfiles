@@ -1,13 +1,51 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Install curl
-if ! command -v curl &>/dev/null; then
-    echo "Installing curl..."
-    sudo apt update && sudo apt install -y curl
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Install Oh My Zsh
+# ============================================================================
+# ZSH CONFIGURATION
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# PACKAGE AUTO-INSTALLATION
+# ----------------------------------------------------------------------------
+REQUIRED_PACKAGES=(
+    i3          # Window manager
+    kitty       # Terminal emulator
+    git         # Version control
+    zsh         # Z shell
+    curl        # URL transfer tool
+    wget        # File downloader
+    vim         # Text editor
+    tmux        # Terminal multiplexer
+    btop        # System monitor
+)
+
+
+install_missing_packages() {
+    local packages_to_install=()
+    
+    for pkg in "${REQUIRED_PACKAGES[@]}"; do
+        if ! dpkg -l | grep -q "^ii  $pkg "; then
+            packages_to_install+=("$pkg")
+        fi
+    done
+    
+    if [[ ${#packages_to_install[@]} -gt 0 ]]; then
+        echo "Missing packages detected: ${packages_to_install[*]}"
+        echo "Installing missing packages..."
+        sudo apt update && sudo apt install -y "${packages_to_install[@]}"
+    fi
+}
+
+install_missing_packages
+
+# ----------------------------------------------------------------------------
+# OH MY ZSH INSTALLATION & CONFIGURATION
+# ----------------------------------------------------------------------------
 if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
     echo "Installing Oh My Zsh..."
     KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
@@ -15,34 +53,24 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
+# ----------------------------------------------------------------------------
+# THEME CONFIGURATION
+# ----------------------------------------------------------------------------
 ZSH_CUSTOM=${ZSH_CUSTOM:-$ZSH/custom}
 THEMES_DIR="$ZSH_CUSTOM/themes"
-SPACESHIP_THEME="$THEMES_DIR/spaceship-prompt"
-PURE_THEME="$THEMES_DIR/pure"
 
-# Clone Spaceship theme
-if [[ ! -d "$SPACESHIP_THEME" ]]; then
+if [[ ! -d "${THEMES_DIR}/powerlevel10k" ]]; then
     echo "Cloning Spaceship theme..."
-    git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$SPACESHIP_THEME"
-    ln -sf "$SPACESHIP_THEME/spaceship.zsh-theme" "$THEMES_DIR/spaceship.zsh-theme"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${THEMES_DIR}/powerlevel10k
 fi
 
-# Clone Pure theme
-if [[ ! -d "$PURE_THEME" ]]; then
-    echo "Cloning Pure theme..."
-    git clone --depth=1 https://github.com/sindresorhus/pure.git "$PURE_THEME"
-    ln -sf "$PURE_THEME/pure.zsh" "$THEMES_DIR/pure.zsh"
-    ln -sf "$PURE_THEME/async.zsh" "$THEMES_DIR/async.zsh"
-fi
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# --- PURE THEME SETUP ---
-fpath+=$PURE_THEME
-autoload -Uz promptinit
-promptinit
-prompt pure
-# ------------------------
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Custom plugins directory
+# ----------------------------------------------------------------------------
+# PLUGINS CONFIGURATION
+# ----------------------------------------------------------------------------
 PLUGINS_DIR="$ZSH_CUSTOM/plugins"
 
 clone_plugin_if_missing() {
@@ -56,42 +84,47 @@ clone_plugin_if_missing() {
     fi
 }
 
-# Install required plugins
 clone_plugin_if_missing "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
 clone_plugin_if_missing "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
 
 plugins=(
-    git
+    git                 
     zsh-syntax-highlighting
     zsh-autosuggestions
     kitty
 )
 
 source $ZSH/oh-my-zsh.sh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=60"
-PROMPT='%{$fg[cyan]%}[%D{%f/%m/%y} %D{%H:%M:%S}] '$PROMPT
 
-# .dotfiles repo
+# ----------------------------------------------------------------------------
+# DOTFILES REPOSITORY MANAGEMENT
+# ----------------------------------------------------------------------------
 DOTFILES="$HOME/.dotfiles"
 if [[ ! -d "$DOTFILES" ]]; then
     echo "Cloning .dotfiles..."
     git clone --depth=1 https://github.com/DeLimaM/.dotfiles
 fi
+
 alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=/"
 dotfiles config --local status.showUntrackedFiles no
 
-# Sync function
 function sync-all() {
     dotfiles add -u
     dotfiles commit -m "${1:-Auto-sync all tracked files}"
 }
 alias sync-all="sync-all"
 
-# ll & cd
+# ----------------------------------------------------------------------------
+# CUSTOM ALIASES & FUNCTIONS
+# ----------------------------------------------------------------------------
 alias ll="ls -al"
+
 function cl() {
     builtin cd "$@" && ll
 }
 alias cd="cl"
 
+# ----------------------------------------------------------------------------
+# LOCAL OVERRIDES
+# ----------------------------------------------------------------------------
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
