@@ -208,6 +208,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-fill /home/martin/Pictures/wallpapers/dark-synth.jpg
 # picom
 exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom.conf
+# Mouse sensitivity
+exec_always --no-startup-id xinput set-prop 10 "libinput Accel Speed" 0.5
+exec_always --no-startup-id xinput set-prop 10 "libinput Accel Profile Enabled" 0, 1, 0
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
