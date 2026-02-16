@@ -6,7 +6,7 @@
 GRUB_DEFAULT="saved"
 GRUB_TIMEOUT="0"
 GRUB_DISTRIBUTOR="`( . /etc/os-release && echo ${NAME} )`"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_backlight=vendor"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet amdgpu.backlight=0"
 GRUB_CMDLINE_LINUX=""
 
 # If your computer has multiple operating systems installed, then you
