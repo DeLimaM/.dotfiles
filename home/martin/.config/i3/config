@@ -216,6 +216,9 @@ exec_always --no-startup-id xinput set-prop 10 "libinput Accel Profile Enabled" 
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
+# arandr
+bindsym XF86Display exec arandr
+
 # gaps
 gaps inner 5px
 
