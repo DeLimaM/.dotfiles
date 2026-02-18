@@ -49,7 +49,7 @@ floating_modifier $mod+Shift
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec kitty --single-instance
 
 # kill focused window
 bindsym $mod+Delete kill
@@ -211,6 +211,10 @@ exec_always --no-startup-id picom --experimental-backends --config ~/.config/pic
 # Mouse sensitivity
 exec_always --no-startup-id xinput set-prop 10 "libinput Accel Speed" 0.5
 exec_always --no-startup-id xinput set-prop 10 "libinput Accel Profile Enabled" 0, 1, 0
+
+# preload kitty
+exec --no-startup-id kitty --single-instance --name kitty-scratch
+for_window [instance="kitty-scratch"] move scratchpad
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
