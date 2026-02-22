@@ -32,7 +32,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -64,10 +64,10 @@ bindsym $mod+d exec "rofi -show drun -show-icons"
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+m focus right
+# bindsym $mod+j focus left
+# bindsym $mod+k focus down
+# bindsym $mod+l focus up
+# bindsym $mod+m focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -109,6 +109,9 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+q focus parent
+
+# lock
+bindsym $mod+l exec i3lock
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -213,8 +216,7 @@ exec_always --no-startup-id xinput set-prop 10 "libinput Accel Speed" 0.5
 exec_always --no-startup-id xinput set-prop 10 "libinput Accel Profile Enabled" 0, 1, 0
 
 # preload kitty
-exec --no-startup-id kitty --single-instance --name kitty-scratch
-for_window [instance="kitty-scratch"] move scratchpad
+exec --no-startup-id kitty --single-instance
 
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%

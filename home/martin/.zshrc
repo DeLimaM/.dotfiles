@@ -9,113 +9,133 @@ fi
 # ZSH CONFIGURATION
 # ============================================================================
 
-# ----------------------------------------------------------------------------
-# PACKAGE AUTO-INSTALLATION
-# ----------------------------------------------------------------------------
-REQUIRED_PACKAGES=(
-    i3          # Window manager
-    kitty       # Terminal emulator
-    git         # Version control
-    zsh         # Z shell
-    curl        # URL transfer tool
-    wget        # File downloader
-    vim         # Text editor
-    tmux        # Terminal multiplexer
-    btop        # System monitor
-)
+# ============================================================================
+# ONE-TIME MACHINE SETUP (run manually with `setup-machine`)
+# ============================================================================
+setup-machine() {
+    # ---- Required packages (apt) ----
+    local -a REQUIRED_PACKAGES=(
+        sudo curl wget i3 kitty git zsh btop polybar firefox-esr
+        rofi feh pulseaudio rocm-smi picom xclip maim lightdm
+    )
 
+    local -a packages_to_install=()
+    local installed
+    installed=$(dpkg-query -W -f='${Package} ${Status}\n' 2>/dev/null)
 
-install_missing_packages() {
-    local packages_to_install=()
-    
     for pkg in "${REQUIRED_PACKAGES[@]}"; do
-        if ! dpkg -l | grep -q "^ii  $pkg "; then
+        if ! echo "$installed" | grep -q "^$pkg install ok installed$"; then
             packages_to_install+=("$pkg")
         fi
     done
-    
-    if [[ ${#packages_to_install[@]} -gt 0 ]]; then
-        echo "Missing packages detected: ${packages_to_install[*]}"
-        echo "Installing missing packages..."
+
+    if (( ${#packages_to_install[@]} )); then
+        echo "Installing missing packages: ${packages_to_install[*]}"
         sudo apt update && sudo apt install -y "${packages_to_install[@]}"
+    else
+        echo "All required packages are already installed."
     fi
+
+    # ---- lightdm-mini-greeter (build .deb from source) ----
+    if dpkg-query -W -f='${Status}' lightdm-mini-greeter 2>/dev/null | grep -q "install ok installed"; then
+        echo "lightdm-mini-greeter already installed."
+    else
+        local -a build_deps=(
+            build-essential automake pkg-config fakeroot debhelper
+            liblightdm-gobject-dev libgtk-3-dev
+        )
+        echo "Installing lightdm-mini-greeter build dependencies..."
+        sudo apt install -y "${build_deps[@]}"
+
+        local build_dir
+        build_dir=$(mktemp -d)
+        git clone --depth=1 https://github.com/prikhi/lightdm-mini-greeter.git "$build_dir/lightdm-mini-greeter"
+
+        pushd "$build_dir/lightdm-mini-greeter" > /dev/null
+        fakeroot dh binary
+        sudo dpkg -i ../lightdm-mini-greeter_*.deb
+        popd > /dev/null
+
+        rm -rf "$build_dir"
+        echo "lightdm-mini-greeter installed."
+    fi
+
+    # ---- Oh My Zsh ----
+    if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+        echo "Installing Oh My Zsh..."
+        KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+    fi
+
+    # ---- Theme & plugins ----
+    local zsh_custom="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+
+    if [[ ! -d "$zsh_custom/themes/powerlevel10k" ]]; then
+        echo "Cloning Powerlevel10k theme..."
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$zsh_custom/themes/powerlevel10k"
+    fi
+
+    local -A plugins_map=(
+        [zsh-syntax-highlighting]="https://github.com/zsh-users/zsh-syntax-highlighting.git"
+        [zsh-autosuggestions]="https://github.com/zsh-users/zsh-autosuggestions.git"
+    )
+    for name url in "${(@kv)plugins_map}"; do
+        if [[ ! -d "$zsh_custom/plugins/$name" ]]; then
+            echo "Cloning $name..."
+            git clone --depth=1 "$url" "$zsh_custom/plugins/$name"
+        fi
+    done
+
+    # ---- Dotfiles ----
+    if [[ ! -d "$HOME/.dotfiles" ]]; then
+        echo "Cloning .dotfiles..."
+        git clone --depth=1 https://github.com/DeLimaM/.dotfiles "$HOME/.dotfiles"
+    fi
+    git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ config --local status.showUntrackedFiles no
+
+    echo "\nSetup complete. Restart your shell to apply changes."
 }
 
-install_missing_packages
+# ============================================================================
+# RUNTIME CONFIGURATION (sourced on every shell)
+# ============================================================================
 
 # ----------------------------------------------------------------------------
-# OH MY ZSH INSTALLATION & CONFIGURATION
+# Oh My Zsh
 # ----------------------------------------------------------------------------
-if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-    echo "Installing Oh My Zsh..."
-    KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
-fi
-
 export ZSH="$HOME/.oh-my-zsh"
-
-# ----------------------------------------------------------------------------
-# THEME CONFIGURATION
-# ----------------------------------------------------------------------------
 ZSH_CUSTOM=${ZSH_CUSTOM:-$ZSH/custom}
-THEMES_DIR="$ZSH_CUSTOM/themes"
-
-if [[ ! -d "${THEMES_DIR}/powerlevel10k" ]]; then
-    echo "Cloning Spaceship theme..."
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${THEMES_DIR}/powerlevel10k
-fi
-
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# ----------------------------------------------------------------------------
-# PLUGINS CONFIGURATION
-# ----------------------------------------------------------------------------
-PLUGINS_DIR="$ZSH_CUSTOM/plugins"
-
-clone_plugin_if_missing() {
-    local plugin_name=$1
-    local repo_url=$2
-    local plugin_path="$PLUGINS_DIR/$plugin_name"
-
-    if [[ ! -d "$plugin_path" ]]; then
-        echo "Cloning $plugin_name..."
-        git clone --depth=1 "$repo_url" "$plugin_path"
-    fi
-}
-
-clone_plugin_if_missing "zsh-syntax-highlighting" "https://github.com/zsh-users/zsh-syntax-highlighting.git"
-clone_plugin_if_missing "zsh-autosuggestions" "https://github.com/zsh-users/zsh-autosuggestions.git"
-
 plugins=(
-    git                 
+    git
     zsh-syntax-highlighting
     zsh-autosuggestions
     kitty
 )
 
-source $ZSH/oh-my-zsh.sh
+[[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 # ----------------------------------------------------------------------------
-# DOTFILES REPOSITORY MANAGEMENT
+# Powerlevel10k
 # ----------------------------------------------------------------------------
-DOTFILES="$HOME/.dotfiles"
-if [[ ! -d "$DOTFILES" ]]; then
-    echo "Cloning .dotfiles..."
-    git clone --depth=1 https://github.com/DeLimaM/.dotfiles
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# ----------------------------------------------------------------------------
+# Dotfiles management
+# ----------------------------------------------------------------------------
+if [[ -d "$HOME/.dotfiles" ]]; then
+    function dotfiles() {
+        git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ "$@"
+    }
+
+    function dotfiles-sync-all() {
+        dotfiles add -u
+        dotfiles commit -m "${1:-Auto-sync all tracked files}"
+    }
 fi
 
-alias dotfiles="git --git-dir=$HOME/.dotfiles/.git --work-tree=/"
-dotfiles config --local status.showUntrackedFiles no
-
-function sync-all() {
-    dotfiles add -u
-    dotfiles commit -m "${1:-Auto-sync all tracked files}"
-}
-alias sync-all="sync-all"
-
 # ----------------------------------------------------------------------------
-# CUSTOM ALIASES & FUNCTIONS
+# Aliases & functions
 # ----------------------------------------------------------------------------
 alias ll="ls -al"
 
@@ -125,6 +145,6 @@ function cl() {
 alias cd="cl"
 
 # ----------------------------------------------------------------------------
-# LOCAL OVERRIDES
+# Local overrides
 # ----------------------------------------------------------------------------
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
