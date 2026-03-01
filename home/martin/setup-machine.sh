@@ -27,6 +27,15 @@ else
     echo "All required packages are already installed."
 fi
 
+# ---- Dotfiles ----
+if [ ! -d "$HOME/.dotfiles" ]; then
+    echo "Cloning .dotfiles..."
+    git clone --depth=1 https://github.com/DeLimaM/.dotfiles "$HOME/.dotfiles"
+fi
+git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ config --local status.showUntrackedFiles no
+echo "Copying dotfiles to / (overwriting existing files)..."
+sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
+
 # ---- lightdm-mini-greeter (build .deb from source) ----
 if dpkg-query -W -f='${Status}' lightdm-mini-greeter 2>/dev/null | grep -q "install ok installed"; then
     echo "lightdm-mini-greeter already installed."
@@ -76,15 +85,6 @@ for name in "${!plugins_map[@]}"; do
     fi
 done
 
-# ---- Dotfiles ----
-if [ ! -d "$HOME/.dotfiles" ]; then
-    echo "Cloning .dotfiles..."
-    git clone --depth=1 https://github.com/DeLimaM/.dotfiles "$HOME/.dotfiles"
-fi
-git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ config --local status.showUntrackedFiles no
-echo "Copying dotfiles to / (overwriting existing files)..."
-sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
-
 # ---- Set zsh as default shell ----
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "Setting zsh as default shell..."
@@ -92,4 +92,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo ""
-echo "Setup complete. Log out and back in (or run 'zsh') to use your new shell."
+echo "Setup complete. Reboot to apply all changes."
