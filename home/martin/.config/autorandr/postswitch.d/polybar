@@ -1,2 +1,4 @@
 #!/bin/bash
+# Wait for X to stabilize after xrandr changes
+sleep 1
 $HOME/.config/polybar/launch.sh

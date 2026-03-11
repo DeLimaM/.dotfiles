@@ -205,6 +205,9 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 # autorandr
 exec --no-startup-id DISPLAY=:0 autorandr --change --default undocked 2>&1 >/tmp/autorandr-i3.log
+
+# polybar - launched on every i3 start/restart, and also relaunched by autorandr postswitch on monitor change
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 # picom
 exec_always --no-startup-id picom --experimental-backends --config ~/.config/picom.conf
 
@@ -219,12 +222,20 @@ exec_always --no-startup-id xinput set-prop 19 "libinput Accel Profile Enabled" 
 # preload kitty
 exec --no-startup-id kitty --single-instance
 
+# dpms off
+exec --no-startup-id xset s off -dpms
+
+exec_always --no-startup-id xinput set-prop "ELAN0676:00 04F3:3195 Touchpad" "libinput Disable While Typing Enabled" 0
+
 # Brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # arandr
 bindsym XF86Display exec arandr
+
+# Save current display positions (after rearranging via arandr/xrandr)
+bindsym $mod+p exec --no-startup-id ~/.config/autorandr/save-display-position.sh
 
 # gaps
 gaps inner 5px

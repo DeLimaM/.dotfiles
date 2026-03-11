@@ -66,3 +66,4 @@ alias cd="cl"
 # Local overrides
 # ----------------------------------------------------------------------------
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+export PATH="$HOME/.local/bin:$PATH"

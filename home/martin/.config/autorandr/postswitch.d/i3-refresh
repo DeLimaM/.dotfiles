@@ -1,0 +1,4 @@
+#!/bin/bash
+# Let i3 know about monitor changes - moves workspaces to correct outputs
+sleep 1.5
+i3-msg -q reload
