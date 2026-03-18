@@ -9,6 +9,7 @@ set -euo pipefail
 REQUIRED_PACKAGES=(
     sudo curl wget i3 kitty git zsh btop polybar firefox-esr
     rofi feh pulseaudio rocm-smi picom xclip maim lightdm rsync thunar
+    arandr autorandr
 )
 
 installed=$(dpkg-query -W -f='${Package} ${Status}\n' 2>/dev/null || true)
