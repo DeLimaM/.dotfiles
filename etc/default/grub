@@ -5,7 +5,7 @@
 
 GRUB_DEFAULT="saved"
 GRUB_TIMEOUT="5"
-GRUB_TIMEOUT_STYLE=menu
+GRUB_TIMEOUT_STYLE="menu"
 GRUB_DISTRIBUTOR="`( . /etc/os-release && echo ${NAME} )`"
 GRUB_CMDLINE_LINUX_DEFAULT="quiet amdgpu.backlight=0"
 GRUB_CMDLINE_LINUX=""
@@ -15,7 +15,7 @@ GRUB_CMDLINE_LINUX=""
 # for guest OSes installed via LVM or raw disk devices, running
 # os-prober can cause damage to those guest OSes as it mounts
 # filesystems to look for things.
-GRUB_DISABLE_OS_PROBER="true"
+#GRUB_DISABLE_OS_PROBER=false
 
 # Uncomment to enable BadRAM filtering, modify to suit your needs
 # This works with Linux (no patch required) and with any kernel that obtains
@@ -42,4 +42,6 @@ GRUB_DISABLE_OS_PROBER="true"
 export GRUB_COLOR_NORMAL="light-gray/dark-gray"
 export GRUB_COLOR_HIGHLIGHT="light-cyan/light-gray"
 GRUB_HIDDEN_TIMEOUT="0"
+
+GRUB_THEME="/boot/grub/themes/solarized-dark/theme.txt"
 GRUB_FONT="/boot/grub/unicode.pf2"
