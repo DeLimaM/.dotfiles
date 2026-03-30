@@ -1,0 +1,24 @@
+font=Iosevka 11
+background-color=#1a182bee
+text-color=#cdd6f4
+border-color=#38d8a3
+border-size=2
+border-radius=8
+padding=12
+margin=8
+width=320
+max-visible=3
+default-timeout=5000
+icon-path=/usr/share/icons/Adwaita
+max-icon-size=32
+layer=overlay
+anchor=top-right
+
+[urgency=low]
+border-color=#2b2940
+default-timeout=3000
+
+[urgency=high]
+border-color=#A54242
+text-color=#ffffff
+default-timeout=0

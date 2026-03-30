@@ -1,0 +1,180 @@
+# Sway config
+
+set $mod Mod4
+
+font pango:Iosevka 9
+
+# Terminal & launcher
+set $term kitty --single-instance
+set $menu wofi --show drun
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+
+# Kill
+bindsym $mod+Delete kill
+
+# Drag
+floating_modifier $mod normal
+tiling_drag enable
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+m move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Layout
+bindsym $mod+h splith
+bindsym $mod+v splitv
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+q focus parent
+
+# Workspaces (AZERTY)
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+ampersand workspace number $ws1
+bindsym $mod+eacute workspace number $ws2
+bindsym $mod+quotedbl workspace number $ws3
+bindsym $mod+apostrophe workspace number $ws4
+bindsym $mod+parenleft workspace number $ws5
+bindsym $mod+minus workspace number $ws6
+bindsym $mod+egrave workspace number $ws7
+bindsym $mod+underscore workspace number $ws8
+bindsym $mod+ccedilla workspace number $ws9
+bindsym $mod+agrave workspace number $ws10
+
+bindsym $mod+Shift+ampersand move container to workspace number $ws1
+bindsym $mod+Shift+eacute move container to workspace number $ws2
+bindsym $mod+Shift+quotedbl move container to workspace number $ws3
+bindsym $mod+Shift+apostrophe move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+minus move container to workspace number $ws6
+bindsym $mod+Shift+egrave move container to workspace number $ws7
+bindsym $mod+Shift+underscore move container to workspace number $ws8
+bindsym $mod+Shift+ccedilla move container to workspace number $ws9
+bindsym $mod+Shift+agrave move container to workspace number $ws10
+
+# Resize
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym m resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Sway management
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+
+# Lock
+bindsym $mod+l exec swaylock -f -c 000000
+
+# Media
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+# Display layout (GUI)
+bindsym XF86Display exec wdisplays
+
+# Screenshots (grim + slurp)
+bindsym Print exec grimshot save output ~/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+Print exec grimshot save active ~/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png
+bindsym Shift+Print exec grimshot save area ~/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png
+bindsym Ctrl+Print exec grimshot copy output
+bindsym Ctrl+$mod+Print exec grimshot copy active
+bindsym Ctrl+Shift+Print exec grimshot copy area
+
+# Input
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    accel_profile flat
+    pointer_accel 0.5
+}
+
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0.5
+}
+
+input type:keyboard {
+    xkb_layout fr
+}
+
+# Appearance
+gaps inner 6
+gaps outer 3
+smart_gaps on
+smart_borders on
+
+default_border pixel 2
+default_floating_border pixel 2
+
+# Slim title font for tabbed/stacked
+font pango:Iosevka 8
+
+#                       border  bg      text    indicator child_border
+client.focused          #38d8a3 #38d8a3 #000000 #38d8a3   #38d8a3
+client.focused_inactive #333333 #222222 #888888 #333333   #333333
+client.unfocused        #222222 #1a182b #666666 #222222   #222222
+client.urgent           #A54242 #A54242 #ffffff #A54242   #A54242
+
+# Outputs
+output * bg #1a182b solid_color
+
+# Bar
+bar {
+    swaybar_command waybar
+}
+
+# Autostart — system services
+exec kanshi
+exec mako
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000'
+
+# Autostart — tray applets for GUI management
+exec nm-applet --indicator
+exec blueman-applet
+
+# DBus / XDG
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
