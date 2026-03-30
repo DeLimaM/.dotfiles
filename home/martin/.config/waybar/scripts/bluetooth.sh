@@ -3,7 +3,7 @@
 # Left-click opens blueman-manager (handled by waybar on-click)
 
 if [ "$(systemctl is-active bluetooth.service)" != "active" ] || bluetoothctl show 2>/dev/null | grep -q "Powered: no"; then
-    echo '{"text": "bt off", "class": "off"}'
+    echo '{"text": "\uf293 off", "class": "off"}'
     exit 0
 fi
 
@@ -17,7 +17,7 @@ for dev in $(bluetoothctl devices Paired 2>/dev/null | awk '{print $2}'); do
 done
 
 if [ -z "$connected" ]; then
-    echo '{"text": "bt", "class": "on"}'
+    echo '{"text": "\uf293", "class": "on"}'
 else
-    echo "{\"text\": \"bt ${connected#, }\", \"class\": \"connected\"}"
+    echo "{\"text\": \"\uf293 ${connected#, }\", \"class\": \"connected\"}"
 fi

@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 34,
+    "height": 38,
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
@@ -9,7 +9,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["cpu", "custom/gpu", "memory", "pulseaudio", "network#wifi", "custom/bluetooth", "custom/battery", "clock", "tray"],
+    "modules-right": ["cpu", "custom/gpu", "memory", "pulseaudio", "network#wifi", "custom/bluetooth", "custom/battery", "clock"],
 
     "sway/workspaces": {
         "disable-scroll": false,
@@ -45,7 +45,7 @@
 
     "memory": {
         "interval": 3,
-        "format": "\uf1c0 {percentage}%",
+        "format": "\uf0ae {percentage}%",
         "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G"
     },
 
@@ -64,9 +64,9 @@
 
     "network#wifi": {
         "interface": "wlp*",
-        "format-wifi": "\uf1eb {signalStrength}%",
+        "format-wifi": "\uf1eb",
         "format-disconnected": "\uf1eb off",
-        "tooltip-format-wifi": "{essid}\n{signalStrength}% — {ipaddr}",
+        "tooltip-format-wifi": "{essid} — {signalStrength}%\n{ipaddr}",
         "on-click": "nm-connection-editor"
     },
 
@@ -87,14 +87,9 @@
     },
 
     "clock": {
-        "format": "{:%H:%M}",
+        "format": "{:%H:%M:%S}",
         "format-alt": "{:%a %d %b}",
         "tooltip-format": "<tt>{calendar}</tt>",
-        "interval": 60
-    },
-
-    "tray": {
-        "icon-size": 13,
-        "spacing": 4
+        "interval": 1
     }
 }

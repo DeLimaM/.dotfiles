@@ -1,6 +1,6 @@
 * {
     font-family: "Iosevka", "FontAwesome", monospace;
-    font-size: 13.5px;
+    font-size: 15px;
     min-height: 0;
     border: none;
     border-radius: 0;
@@ -106,8 +106,7 @@ tooltip {
 #network,
 #custom-bluetooth,
 #custom-battery,
-#clock,
-#tray {
+#clock {
     padding: 0 8px;
     margin: 4px 0;
 }
