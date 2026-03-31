@@ -13,6 +13,7 @@ REQUIRED_PACKAGES=(
     # Sway / Wayland
     sway swaybg swayidle swaylock waybar wofi kanshi wdisplays
     xdg-desktop-portal-wlr wl-clipboard grim slurp grimshot
+    greetd tuigreet
 
     # Notifications
     dunst
@@ -60,6 +61,14 @@ fi
 sudo systemctl enable --now power-profiles-daemon
 sudo systemctl enable --now bluetooth
 sudo systemctl enable --now NetworkManager
+
+# ---- Switch to greetd (disable other display managers) ----
+for dm in lightdm sddm gdm; do
+    if systemctl is-enabled "$dm" &>/dev/null; then
+        sudo systemctl disable "$dm"
+    fi
+done
+sudo systemctl enable greetd
 
 # ---- Dotfiles ----
 if [ ! -d "$HOME/.dotfiles" ]; then
@@ -109,4 +118,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo ""
-echo "Setup complete. Log out and select Sway from your display manager."
+echo "Setup complete. Reboot to launch greetd + tuigreet."
