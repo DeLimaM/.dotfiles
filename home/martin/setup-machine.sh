@@ -1,15 +1,36 @@
 #!/bin/bash
 # ============================================================================
-# ONE-TIME MACHINE SETUP
+# ONE-TIME MACHINE SETUP — Sway / Wayland
 # Run with: bash ~/setup-machine.sh
 # ============================================================================
 set -euo pipefail
 
 # ---- Required packages (apt) ----
 REQUIRED_PACKAGES=(
-    sudo curl wget i3 kitty git zsh btop polybar firefox-esr
-    rofi feh pulseaudio rocm-smi picom xclip maim lightdm rsync thunar
-    arandr autorandr
+    # Core
+    sudo curl wget git zsh rsync
+
+    # Sway / Wayland
+    sway swaybg swayidle swaylock waybar wofi kanshi wdisplays
+    xdg-desktop-portal-wlr wl-clipboard grim slurp grimshot
+
+    # Notifications
+    dunst
+
+    # Terminal & tools
+    kitty btop firefox-esr
+
+    # Audio
+    pipewire pipewire-pulse pavucontrol
+
+    # Network / Bluetooth (GUI management)
+    network-manager network-manager-gnome bluez blueman
+
+    # Power management
+    power-profiles-daemon brightnessctl
+
+    # Fonts
+    fonts-font-awesome
 )
 
 installed=$(dpkg-query -W -f='${Package} ${Status}\n' 2>/dev/null || true)
@@ -28,6 +49,18 @@ else
     echo "All required packages are already installed."
 fi
 
+# ---- Disable TLP if present (conflicts with power-profiles-daemon) ----
+if systemctl is-enabled tlp &>/dev/null; then
+    echo "Disabling TLP (conflicts with power-profiles-daemon)..."
+    sudo systemctl disable tlp
+    sudo systemctl mask tlp
+fi
+
+# ---- Enable services ----
+sudo systemctl enable --now power-profiles-daemon
+sudo systemctl enable --now bluetooth
+sudo systemctl enable --now NetworkManager
+
 # ---- Dotfiles ----
 if [ ! -d "$HOME/.dotfiles" ]; then
     echo "Cloning .dotfiles..."
@@ -37,28 +70,11 @@ git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ config --local status.showUnt
 echo "Copying dotfiles to / (overwriting existing files)..."
 sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
 
-# ---- lightdm-mini-greeter (build .deb from source) ----
-if dpkg-query -W -f='${Status}' lightdm-mini-greeter 2>/dev/null | grep -q "install ok installed"; then
-    echo "lightdm-mini-greeter already installed."
-else
-    build_deps=(
-        build-essential automake pkg-config fakeroot debhelper
-        liblightdm-gobject-dev libgtk-3-dev
-    )
-    echo "Installing lightdm-mini-greeter build dependencies..."
-    sudo apt install -y "${build_deps[@]}"
+# ---- Make waybar scripts executable ----
+chmod +x "$HOME/.config/waybar/scripts/"*.sh
 
-    build_dir=$(mktemp -d)
-    git clone --depth=1 https://github.com/prikhi/lightdm-mini-greeter.git "$build_dir/lightdm-mini-greeter"
-
-    pushd "$build_dir/lightdm-mini-greeter" > /dev/null
-    fakeroot dh binary
-    sudo dpkg -i ../lightdm-mini-greeter_*.deb
-    popd > /dev/null
-
-    rm -rf "$build_dir"
-    echo "lightdm-mini-greeter installed."
-fi
+# ---- Screenshots directory ----
+mkdir -p "$HOME/Pictures/screenshots"
 
 # ---- Oh My Zsh ----
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -93,4 +109,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo ""
-echo "Setup complete. Reboot to apply all changes."
+echo "Setup complete. Log out and select Sway from your display manager."

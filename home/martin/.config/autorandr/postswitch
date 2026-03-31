@@ -1,9 +1,0 @@
-#!/bin/sh
-INTERNAL=eDP
-EXTERNAL=$(xrandr | grep " connected" | grep -v "$INTERNAL" | awk '{print $1}' | head -1)
-
-if [ -n "$EXTERNAL" ]; then
-    xrandr --output "$EXTERNAL" --above $INTERNAL --auto --output $INTERNAL --auto
-else
-    xrandr --output $INTERNAL --auto
-fi

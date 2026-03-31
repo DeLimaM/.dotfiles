@@ -30,7 +30,7 @@
     },
 
     "cpu": {
-        "interval": 2,
+        "interval": 5,
         "format": "\uf2db {usage}%",
         "tooltip-format": "CPU: {usage}%\n{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}",
         "format-icons": ["<span color='#55aa55'>▁</span>",
@@ -44,7 +44,7 @@
     },
 
     "memory": {
-        "interval": 3,
+        "interval": 5,
         "format": "\uf0ae {percentage}%",
         "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G"
     },
@@ -52,7 +52,7 @@
     "custom/gpu": {
         "exec": "~/.config/waybar/scripts/gpu.sh",
         "return-type": "json",
-        "interval": 2
+        "interval": 5
     },
 
     "pulseaudio": {
@@ -73,7 +73,7 @@
     "custom/bluetooth": {
         "exec": "~/.config/waybar/scripts/bluetooth.sh",
         "return-type": "json",
-        "interval": 5,
+        "interval": 10,
         "signal": 9,
         "on-click": "blueman-manager"
     },
@@ -81,7 +81,7 @@
     "custom/battery": {
         "exec": "~/.config/waybar/scripts/battery.sh",
         "return-type": "json",
-        "interval": 5,
+        "interval": 10,
         "signal": 8,
         "on-click": "~/.config/waybar/scripts/battery.sh click"
     },

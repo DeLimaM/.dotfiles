@@ -165,7 +165,7 @@ bar {
 
 # Autostart — system services
 exec kanshi
-exec mako
+exec dunst
 exec swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
     timeout 600 'swaymsg "output * power off"' \
