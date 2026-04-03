@@ -95,6 +95,9 @@ sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
 # ---- Make waybar scripts executable ----
 chmod +x "$HOME/.config/waybar/scripts/"*.sh
 
+# ---- Make udev helper scripts executable ----
+sudo chmod +x /usr/local/bin/set-power-profile
+
 # ---- Apply sysctl and udev rules ----
 sudo sysctl --system >/dev/null 2>&1
 sudo udevadm control --reload-rules

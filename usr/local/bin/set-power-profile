@@ -1,0 +1,5 @@
+#!/bin/bash
+# Wrapper for powerprofilesctl called from udev.
+# Silently exits 0 if the daemon is not yet running (early boot).
+/usr/bin/powerprofilesctl set "$1" 2>/dev/null
+exit 0
