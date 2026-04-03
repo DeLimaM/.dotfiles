@@ -13,13 +13,13 @@ REQUIRED_PACKAGES=(
     # Sway / Wayland
     sway swaybg swayidle swaylock waybar wofi kanshi wdisplays
     xdg-desktop-portal-wlr wl-clipboard grim slurp grimshot
-    greetd tuigreet
+    lightdm lightdm-mini-greeter
 
     # Notifications
     dunst
 
     # Terminal & tools
-    kitty btop firefox-esr
+    kitty btop firefox-esr cliphist
 
     # Audio
     pipewire pipewire-pulse pavucontrol
@@ -57,18 +57,31 @@ if systemctl is-enabled tlp &>/dev/null; then
     sudo systemctl mask tlp
 fi
 
+# ---- Disable unnecessary services ----
+for svc in thermald ollama pmcd pmie pmlogger pmproxy; do
+    if systemctl is-enabled "$svc" &>/dev/null; then
+        echo "Disabling $svc..."
+        sudo systemctl disable --now "$svc"
+    fi
+done
+
+# ---- Mask conflicting/unused user services ----
+for svc in pulseaudio.service pulseaudio.socket foot-server.service foot-server.socket waybar.service; do
+    systemctl --user mask "$svc" 2>/dev/null || true
+done
+
 # ---- Enable services ----
 sudo systemctl enable --now power-profiles-daemon
 sudo systemctl enable --now bluetooth
 sudo systemctl enable --now NetworkManager
 
-# ---- Switch to greetd (disable other display managers) ----
-for dm in lightdm sddm gdm; do
+# ---- Enable lightdm (disable other display managers) ----
+for dm in greetd sddm gdm; do
     if systemctl is-enabled "$dm" &>/dev/null; then
         sudo systemctl disable "$dm"
     fi
 done
-sudo systemctl enable greetd
+sudo systemctl enable lightdm
 
 # ---- Dotfiles ----
 if [ ! -d "$HOME/.dotfiles" ]; then
@@ -81,6 +94,10 @@ sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
 
 # ---- Make waybar scripts executable ----
 chmod +x "$HOME/.config/waybar/scripts/"*.sh
+
+# ---- Apply sysctl and udev rules ----
+sudo sysctl --system >/dev/null 2>&1
+sudo udevadm control --reload-rules
 
 # ---- Screenshots directory ----
 mkdir -p "$HOME/Pictures/screenshots"
@@ -118,4 +135,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo ""
-echo "Setup complete. Reboot to launch greetd + tuigreet."
+echo "Setup complete. Reboot to launch lightdm."

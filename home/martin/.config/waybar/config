@@ -9,7 +9,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["cpu", "custom/gpu", "memory", "pulseaudio", "network#wifi", "custom/bluetooth", "custom/battery", "clock"],
+    "modules-right": ["cpu", "custom/gpu", "memory", "pulseaudio", "network#wifi", "custom/bluetooth", "custom/battery", "clock", "custom/power"],
 
     "sway/workspaces": {
         "disable-scroll": false,
@@ -59,7 +59,9 @@
         "format": "\uf028 {volume}%",
         "format-muted": "\uf026 mute",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol"
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
 
     "network#wifi": {
@@ -67,7 +69,7 @@
         "format-wifi": "\uf1eb",
         "format-disconnected": "\uf1eb off",
         "tooltip-format-wifi": "{essid} — {signalStrength}%\n{ipaddr}",
-        "on-click": "nm-connection-editor"
+        "on-click": "~/.config/waybar/scripts/wifi-menu.sh"
     },
 
     "custom/bluetooth": {
@@ -75,7 +77,7 @@
         "return-type": "json",
         "interval": 10,
         "signal": 9,
-        "on-click": "blueman-manager"
+        "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh"
     },
 
     "custom/battery": {
@@ -83,7 +85,7 @@
         "return-type": "json",
         "interval": 10,
         "signal": 8,
-        "on-click": "~/.config/waybar/scripts/battery.sh click"
+        "on-click": "~/.config/waybar/scripts/battery-menu.sh"
     },
 
     "clock": {
@@ -91,5 +93,11 @@
         "format-alt": "{:%a %d %b}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "interval": 1
+    },
+
+    "custom/power": {
+        "format": "\uf011",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/scripts/power-menu.sh"
     }
 }

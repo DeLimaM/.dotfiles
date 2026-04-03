@@ -1,0 +1,22 @@
+# Laptop only
+profile undocked {
+    output eDP-1 enable position 0,0
+}
+
+# Laptop + external monitor (external on the left)
+profile docked {
+    output "AOC 24G1WG4 0x0003F994" enable mode 1920x1080@144.001Hz position 0,0
+    output eDP-1 enable position 1920,0
+}
+
+# External monitor only (lid closed)
+profile external-only {
+    output eDP-1 disable
+    output "AOC 24G1WG4 0x0003F994" enable mode 1920x1080@144.001Hz position 0,0
+}
+
+# Any unknown external display — extend left of laptop
+profile docked-unknown {
+    output eDP-1 enable position 1920,0
+    output * enable position 0,0
+}

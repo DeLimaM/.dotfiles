@@ -2,7 +2,7 @@
 
 set $mod Mod4
 
-font pango:Iosevka 9
+font pango:Iosevka 8
 
 # Terminal & launcher
 set $term kitty --single-instance
@@ -110,7 +110,15 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # Display layout (GUI)
-bindsym XF86Display exec wdisplays
+bindsym XF86Display exec ~/.config/waybar/scripts/display-menu.sh
+
+# Quick menus
+bindsym $mod+b exec ~/.config/waybar/scripts/bluetooth-menu.sh
+bindsym $mod+p exec ~/.config/waybar/scripts/battery-menu.sh
+bindsym $mod+w exec ~/.config/waybar/scripts/wifi-menu.sh
+
+# Clipboard history
+bindsym $mod+c exec cliphist list | wofi --show dmenu -p "Clipboard" | cliphist decode | wl-copy
 
 # Screenshots (grim + slurp)
 bindsym Print exec grimshot save output ~/Pictures/screenshots/$(date +%Y%m%d-%H%M%S).png
@@ -146,14 +154,21 @@ smart_borders on
 default_border pixel 2
 default_floating_border pixel 2
 
-# Slim title font for tabbed/stacked
-font pango:Iosevka 8
-
 #                       border  bg      text    indicator child_border
 client.focused          #38d8a3 #38d8a3 #000000 #38d8a3   #38d8a3
 client.focused_inactive #333333 #222222 #888888 #333333   #333333
 client.unfocused        #222222 #1a182b #666666 #222222   #222222
 client.urgent           #A54242 #A54242 #ffffff #A54242   #A54242
+
+# Float GUI popups from waybar clicks
+for_window [app_id="pavucontrol"] floating enable, resize set 500 400, move position center
+for_window [app_id="nm-connection-editor"] floating enable, resize set 500 400, move position center
+for_window [app_id="blueman-manager"] floating enable, resize set 500 400, move position center
+for_window [app_id=".blueman-manager-wrapped"] floating enable, resize set 500 400, move position center
+for_window [app_id="wdisplays"] floating enable, resize set 600 400, move position center
+
+# Inhibit idle when any window is fullscreen (e.g. video playback)
+for_window [shell=".*"] inhibit_idle fullscreen
 
 # Outputs
 output * bg #1a182b solid_color
@@ -167,10 +182,12 @@ bar {
 exec kanshi
 exec dunst
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'swaymsg "output * power off"' \
-    resume 'swaymsg "output * power on"' \
+    timeout 300 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
     before-sleep 'swaylock -f -c 000000'
+
+# Clipboard history listener
+exec wl-paste --watch cliphist store
 
 # Autostart — tray applets for GUI management
 exec nm-applet --indicator

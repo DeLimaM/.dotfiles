@@ -1,6 +1,6 @@
 * {
-    font-family: "Iosevka", "FontAwesome", monospace;
-    font-size: 15px;
+    font-family: "Iosevka", monospace, "FontAwesome";
+    font-size: 13px;
     min-height: 0;
     border: none;
     border-radius: 0;
@@ -166,7 +166,14 @@ tooltip {
     color: #38d8a3;
     font-weight: bold;
     background: rgba(43, 41, 64, 0.5);
+}
+
+#custom-power {
+    color: #A54242;
+    background: rgba(43, 41, 64, 0.5);
     border-radius: 0 4px 4px 0;
+    padding: 0 10px;
+    margin: 4px 4px 4px 0;
 }
 
 #tray {

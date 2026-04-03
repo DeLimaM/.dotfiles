@@ -1,6 +1,11 @@
 #!/bin/bash
 # Bluetooth status module for waybar
-# Left-click opens blueman-manager (handled by waybar on-click)
+RFKILL=/usr/sbin/rfkill
+
+if $RFKILL list bluetooth 2>/dev/null | grep -q "Soft blocked: yes"; then
+    echo '{"text": "\uf293 off", "class": "off"}'
+    exit 0
+fi
 
 if [ "$(systemctl is-active bluetooth.service)" != "active" ] || bluetoothctl show 2>/dev/null | grep -q "Powered: no"; then
     echo '{"text": "\uf293 off", "class": "off"}'
