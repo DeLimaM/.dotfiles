@@ -10,7 +10,7 @@ echo "===== Raspberry Pi 4 — headless setup ====="
 # ---- Required packages (apt) ----
 REQUIRED_PACKAGES=(
     # core
-    sudo curl wget git zsh rsync
+    sudo curl wget git zsh
     # system monitoring
     btop htop iotop
     # network
@@ -43,8 +43,8 @@ if [ ! -d "$HOME/.dotfiles" ]; then
     git clone --depth=1 -b pi4 https://github.com/DeLimaM/.dotfiles "$HOME/.dotfiles"
 fi
 git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ config --local status.showUntrackedFiles no
-echo "Copying dotfiles to / (overwriting existing files)..."
-sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
+echo "Deploying dotfiles to /..."
+sudo git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ checkout -f
 
 # ---- System configuration ----
 # Apply sysctl rules
