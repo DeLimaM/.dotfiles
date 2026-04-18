@@ -28,7 +28,6 @@ plugins=(
     git
     zsh-syntax-highlighting
     zsh-autosuggestions
-    kitty
 )
 
 [[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh

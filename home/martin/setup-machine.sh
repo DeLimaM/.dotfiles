@@ -1,14 +1,24 @@
 #!/bin/bash
 # ============================================================================
-# ONE-TIME MACHINE SETUP
+# ONE-TIME MACHINE SETUP — Raspberry Pi 4 (headless)
 # Run with: bash ~/setup-machine.sh
 # ============================================================================
 set -euo pipefail
 
+echo "===== Raspberry Pi 4 — headless setup ====="
+
 # ---- Required packages (apt) ----
 REQUIRED_PACKAGES=(
-    sudo curl wget i3 kitty git zsh btop polybar firefox-esr
-    rofi feh pulseaudio rocm-smi picom xclip maim lightdm rsync thunar
+    # core
+    sudo curl wget git zsh rsync
+    # system monitoring
+    btop htop iotop
+    # network
+    net-tools dnsutils nmap ssh openssh-server
+    # utilities
+    tmux tree jq unzip zip vim nano
+    # filesystem
+    ncdu duf
 )
 
 installed=$(dpkg-query -W -f='${Package} ${Status}\n' 2>/dev/null || true)
@@ -30,34 +40,30 @@ fi
 # ---- Dotfiles ----
 if [ ! -d "$HOME/.dotfiles" ]; then
     echo "Cloning .dotfiles..."
-    git clone --depth=1 https://github.com/DeLimaM/.dotfiles "$HOME/.dotfiles"
+    git clone --depth=1 -b pi4 https://github.com/DeLimaM/.dotfiles "$HOME/.dotfiles"
 fi
 git --git-dir="$HOME/.dotfiles/.git" --work-tree=/ config --local status.showUntrackedFiles no
 echo "Copying dotfiles to / (overwriting existing files)..."
 sudo rsync -a --exclude='.git' "$HOME/.dotfiles"/ /
 
-# ---- lightdm-mini-greeter (build .deb from source) ----
-if dpkg-query -W -f='${Status}' lightdm-mini-greeter 2>/dev/null | grep -q "install ok installed"; then
-    echo "lightdm-mini-greeter already installed."
-else
-    build_deps=(
-        build-essential automake pkg-config fakeroot debhelper
-        liblightdm-gobject-dev libgtk-3-dev
-    )
-    echo "Installing lightdm-mini-greeter build dependencies..."
-    sudo apt install -y "${build_deps[@]}"
-
-    build_dir=$(mktemp -d)
-    git clone --depth=1 https://github.com/prikhi/lightdm-mini-greeter.git "$build_dir/lightdm-mini-greeter"
-
-    pushd "$build_dir/lightdm-mini-greeter" > /dev/null
-    fakeroot dh binary
-    sudo dpkg -i ../lightdm-mini-greeter_*.deb
-    popd > /dev/null
-
-    rm -rf "$build_dir"
-    echo "lightdm-mini-greeter installed."
+# ---- System configuration ----
+# Apply sysctl rules
+if [ -f /etc/sysctl.d/99-pi4.conf ]; then
+    echo "Applying sysctl settings..."
+    sudo sysctl --system > /dev/null 2>&1
 fi
+
+# ---- SSH ----
+echo "Enabling SSH..."
+sudo systemctl enable --now ssh
+
+# ---- Disable unnecessary services ----
+for svc in bluetooth avahi-daemon triggerhappy; do
+    if systemctl is-enabled "$svc" &>/dev/null; then
+        echo "Disabling $svc..."
+        sudo systemctl disable --now "$svc"
+    fi
+done
 
 # ---- Oh My Zsh ----
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -92,4 +98,4 @@ if [ "$SHELL" != "$(which zsh)" ]; then
 fi
 
 echo ""
-echo "Setup complete. Reboot to apply all changes."
+echo "===== Setup complete. Reboot to apply all changes. ====="
