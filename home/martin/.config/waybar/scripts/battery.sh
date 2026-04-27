@@ -28,9 +28,9 @@ PERC=$(cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo "?")
 STATUS=$(cat /sys/class/power_supply/BAT0/status 2>/dev/null | tr '[:upper:]' '[:lower:]')
 
 case "$STATUS" in
-    charging)    text="${PERC}%+ ${PLABEL}"; class="charging" ;;
-    discharging) text="${PERC}% ${PLABEL}"; [ "$PERC" != "?" ] && [ "$PERC" -lt 15 ] && class="critical" || class="discharging" ;;
-    *)           text="${PERC}% ${PLABEL}"; class="full" ;;
+    charging)    text="\uf0e7 ${PERC}%+ ${PLABEL}"; class="charging" ;;
+    discharging) text="\uf242 ${PERC}% ${PLABEL}"; [ "$PERC" != "?" ] && [ "$PERC" -lt 15 ] && class="critical" || class="discharging" ;;
+    *)           text="\uf240 ${PERC}% ${PLABEL}"; class="full" ;;
 esac
 
 echo "{\"text\": \"${text}\", \"class\": \"${class}\"}"

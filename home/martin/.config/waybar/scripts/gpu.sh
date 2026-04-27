@@ -18,4 +18,4 @@ elif [ "$usage" -lt 93 ]; then ramp="<span color='#ff5555'>▇</span>"
 else                           ramp="<span color='#ff0000'>█</span>"
 fi
 
-echo "{\"text\": \"\uf108 ${usage}%\", \"tooltip\": \"GPU: ${usage}% ${ramp}\", \"class\": \"gpu\"}"
+echo "{\"text\": \"\uf26c ${usage}%\", \"tooltip\": \"GPU: ${usage}% ${ramp}\", \"class\": \"gpu\"}"
