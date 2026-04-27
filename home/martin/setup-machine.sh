@@ -31,7 +31,10 @@ REQUIRED_PACKAGES=(
     power-profiles-daemon brightnessctl
 
     # Fonts
-    fonts-font-awesome
+    fonts-font-awesome fonts-iosevka
+
+    # XDG portals
+    xdg-desktop-portal-gtk
 )
 
 installed=$(dpkg-query -W -f='${Package} ${Status}\n' 2>/dev/null || true)

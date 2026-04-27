@@ -99,15 +99,15 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
 
 # Lock
-bindsym $mod+l exec swaylock -f -c 000000
+bindsym $mod+l exec swaylock -f -c 1a182b
 
 # Media
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Display layout (GUI)
 bindsym XF86Display exec ~/.config/waybar/scripts/display-menu.sh
@@ -116,6 +116,16 @@ bindsym XF86Display exec ~/.config/waybar/scripts/display-menu.sh
 bindsym $mod+b exec ~/.config/waybar/scripts/bluetooth-menu.sh
 bindsym $mod+p exec ~/.config/waybar/scripts/battery-menu.sh
 bindsym $mod+w exec ~/.config/waybar/scripts/wifi-menu.sh
+
+# Scratchpad
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+a scratchpad show
+
+# Move workspace to output (multi-monitor)
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Up move workspace to output up
+bindsym $mod+Ctrl+Down move workspace to output down
 
 # Clipboard history
 bindsym $mod+c exec cliphist list | wofi --show dmenu -p "Clipboard" | cliphist decode | wl-copy
@@ -154,10 +164,14 @@ smart_borders on
 default_border pixel 2
 default_floating_border pixel 2
 
+popup_during_fullscreen smart
+focus_on_window_activation smart
+seat * hide_cursor 5000
+
 #                       border  bg      text    indicator child_border
 client.focused          #38d8a3 #38d8a3 #000000 #38d8a3   #38d8a3
-client.focused_inactive #333333 #222222 #888888 #333333   #333333
-client.unfocused        #222222 #1a182b #666666 #222222   #222222
+client.focused_inactive #3d3a56 #2b2940 #a0a0b8 #3d3a56   #3d3a56
+client.unfocused        #2b2940 #1a182b #7b8fbc #2b2940   #2b2940
 client.urgent           #A54242 #A54242 #ffffff #A54242   #A54242
 
 # Float GUI popups from waybar clicks
@@ -182,16 +196,16 @@ bar {
 exec kanshi
 exec dunst
 exec swayidle -w \
-    timeout 300 'swaymsg "output * dpms off"' \
+    timeout 600 'swaylock -f -c 1a182b' \
+    timeout 660 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c 000000'
+    before-sleep 'swaylock -f -c 1a182b'
 
 # Clipboard history listener
 exec wl-paste --watch cliphist store
 
-# Autostart — tray applets for GUI management
-exec nm-applet --indicator
-exec blueman-applet
+# Tray applets removed — waybar modules handle network & bluetooth
+# GUI management via waybar click → nm-connection-editor / blueman-manager
 
 # DBus / XDG
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

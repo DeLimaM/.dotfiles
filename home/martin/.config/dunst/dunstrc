@@ -39,7 +39,7 @@
 
 [urgency_low]
     background = "#1a182bee"
-    foreground = "#6272a4"
+    foreground = "#7b8fbc"
     frame_color = "#2b2940"
     timeout = 3
 
