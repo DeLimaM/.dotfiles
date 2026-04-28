@@ -149,12 +149,16 @@ tooltip {
 }
 
 #custom-battery {
-  color: #cdd6f4;
   background: rgba(43, 41, 64, 0.5);
+  color: #7b8fbc;
 }
 
 #custom-battery.charging {
   color: #38d8a3;
+}
+
+#custom-battery.full {
+  color: #7b8fbc;
 }
 
 #custom-battery.critical {
